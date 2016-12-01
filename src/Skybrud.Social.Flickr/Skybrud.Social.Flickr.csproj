@@ -97,6 +97,7 @@
     <Compile Include="Options\Photosets\FlickrGetPhotosetsOptions.cs" />
     <Compile Include="Options\Photos\FlickrUploadPhotoOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoGenerated.cs" />
     <Compile Include="Responses\FlickrResponse.cs" />
     <Compile Include="Responses\People\FlickrGetPersonResponse.cs" />
     <Compile Include="Responses\People\FlickrFindByUsernameResponse.cs" />
@@ -110,8 +111,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)build\Skybrud.Social.PreBuildTool.exe" 2016-06-18 "$(ProjectPath)"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)build\UpdateAssemblyInfoJson.exe" "$(ProjectPath)" "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
