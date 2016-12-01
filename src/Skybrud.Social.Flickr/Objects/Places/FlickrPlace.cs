@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
+using Skybrud.Essentials.Locations;
+using Skybrud.Essentials.Xml.Extensions;
 using Skybrud.Social.Flickr.Enums;
-using Skybrud.Social.Interfaces;
-using Skybrud.Social.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Places {
 
@@ -127,6 +127,9 @@ namespace Skybrud.Social.Flickr.Objects.Places {
             }
         }
 
+        public string PlaceType { get; private set; }
+        public int PlaceTypeId { get; private set; }
+
         #endregion
 
         #region Constructor
@@ -146,6 +149,8 @@ namespace Skybrud.Social.Flickr.Objects.Places {
             County = xml.GetElement("county", FlickrPlaceItem.Parse);
             Region = xml.GetElement("region", FlickrPlaceItem.Parse);
             Country = xml.GetElement("country", FlickrPlaceItem.Parse);
+            PlaceType = xml.GetAttributeValue("place_type");
+            PlaceTypeId = xml.GetAttributeValue<int>("place_type_id");
         }
 
         #endregion

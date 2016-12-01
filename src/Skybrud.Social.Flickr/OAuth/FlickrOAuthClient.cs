@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
-using Skybrud.Social.Exceptions;
+using Skybrud.Essentials.Common;
 using Skybrud.Social.Flickr.Endpoints.Raw;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
@@ -43,6 +43,11 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// Gets a reference to the raw photos endpoint.
         /// </summary>
         public FlickrPhotosRawEndpoint Photos { get; private set; }
+
+        /// <summary>
+        /// Gets a reference to the raw places endpoint.
+        /// </summary>
+        public FlickrPlacesRawEndpoint Places { get; private set; }
 
         /// <summary>
         /// Gets a reference to the raw test endpoint.
@@ -102,6 +107,7 @@ namespace Skybrud.Social.Flickr.OAuth {
             People = new FlickrPeopleRawEndpoint(this);
             Photosets = new FlickrPhotosetsRawEndpoint(this);
             Photos = new FlickrPhotosRawEndpoint(this);
+            Places = new FlickrPlacesRawEndpoint(this);
             Test = new FlickrTestRawEndpoint(this);
         
         }

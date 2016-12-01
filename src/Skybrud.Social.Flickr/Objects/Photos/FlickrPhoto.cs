@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Xml.Linq;
-using Skybrud.Social.Exceptions;
+using Skybrud.Essentials.Enums;
+using Skybrud.Essentials.Time;
+using Skybrud.Essentials.Xml.Extensions;
 using Skybrud.Social.Flickr.Enums;
 using Skybrud.Social.Flickr.Objects.Places;
-using Skybrud.Social.Time;
-using Skybrud.Social.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Photos {
     
@@ -26,7 +26,7 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
         /// <summary>
         /// Gets the timestamp for when the photo was uploaded.
         /// </summary>
-        public SocialDateTime Uploaded { get; private set; }
+        public EssentialsDateTime Uploaded { get; private set; }
 
         /// <summary>
         /// Gets whether the authenticated user has favorited the photo.
@@ -120,10 +120,10 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
             Secret = xml.GetAttributeValue("secret");
             Server = xml.GetAttributeValue("server");
             Farm = xml.GetAttributeValue("farm");
-            Uploaded = xml.GetAttributeAsInt64("dateuploaded", SocialDateTime.FromUnixTimestamp);
+            Uploaded = xml.GetAttributeValueAsInt64("dateuploaded", EssentialsDateTime.FromUnixTimestamp);
             IsFavorite = xml.GetAttributeAsBoolean("isfavorite");
-            LicenseId = xml.GetAttributeAsInt32("license");
-            SafetyLevel = xml.GetAttributeAsInt32("safety_level", ParseSafetyLevel);
+            LicenseId = xml.GetAttributeValueAsInt32("license");
+            SafetyLevel = xml.GetAttributeValueAsInt32("safety_level", ParseSafetyLevel);
             OriginalSecret = xml.GetAttributeValue("originalsecret");
             OriginalFormat = xml.GetAttributeValue("originalformat");
             Views = xml.GetAttributeValue<int>("views");

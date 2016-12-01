@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using Skybrud.Social.Xml.Extensions;
+using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Places {
     
@@ -25,6 +25,21 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// Gets the latitude of the place.
+        /// </summary>
+        public double Latitude { get; private set; }
+
+        /// <summary>
+        /// Gets the longitude of the place.
+        /// </summary>
+        public double Longitude { get; private set; }
+
+        /// <summary>
+        /// Gets the Flickr URL of the place.
+        /// </summary>
+        public string PlaceUrl { get; private set; }
+
         #endregion
 
         #region Constructor
@@ -37,6 +52,9 @@ namespace Skybrud.Social.Flickr.Objects.Places {
             Id = xml.GetAttributeValue("place_id");
             WoeId = xml.GetAttributeValue("woeid");
             Name = xml.Value;
+            Latitude = xml.GetAttributeValue<double>("latitude");
+            Longitude = xml.GetAttributeValue<double>("longitude");
+            PlaceUrl = xml.GetAttributeValue("place_url");
         }
 
         #endregion

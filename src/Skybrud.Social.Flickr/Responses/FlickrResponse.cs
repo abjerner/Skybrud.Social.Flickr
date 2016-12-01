@@ -1,9 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Xml.Linq;
 using Skybrud.Social.Flickr.Exceptions;
 using Skybrud.Social.Http;
-using Skybrud.Social.Xml.Extensions;
+using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Responses {
 
@@ -40,7 +39,7 @@ namespace Skybrud.Social.Flickr.Responses {
 
             // Otherwise "status" should be "fail", and there should be an "err" element 
             XElement xError = xResponse.Element("err");
-            int code = xError.GetAttributeAsInt32("code");
+            int code = xError.GetAttributeValueAsInt32("code");
             string message = xError.GetAttributeValue("msg");
             throw new FlickrApiException(response, code, message);
         

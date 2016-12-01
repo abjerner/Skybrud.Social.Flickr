@@ -41,7 +41,7 @@ namespace Skybrud.Social.Flickr.Responses.Photosets {
 
             // Initialize the response object
             return new FlickrGetPhotosetInfoResponse(response) {
-                Body = ParseXml(response.Body, FlickrGetPhotosetInfoResponseBody.Parse)
+                Body = ParseXmlElement(response.Body, FlickrGetPhotosetInfoResponseBody.Parse)
             };
 
         }

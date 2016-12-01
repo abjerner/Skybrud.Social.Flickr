@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using Skybrud.Social.Xml.Extensions;
+using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Photosets {
 

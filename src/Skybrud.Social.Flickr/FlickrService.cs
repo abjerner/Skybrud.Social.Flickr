@@ -35,6 +35,11 @@ namespace Skybrud.Social.Flickr {
         public FlickrPhotosEndpoint Photos { get; private set; }
 
         /// <summary>
+        /// Gets a reference to the places endpoint.
+        /// </summary>
+        public FlickrPlacesEndpoint Places { get; private set; }
+
+        /// <summary>
         /// Gets a reference to the test endpoint.
         /// </summary>
         public FlickrTestEndpoint Test { get; private set; }
@@ -43,12 +48,18 @@ namespace Skybrud.Social.Flickr {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public FlickrService() : this(new FlickrOAuthClient()) { }
+
         private FlickrService(FlickrOAuthClient client) {
             Client = client;
             Galleries = new FlickrGalleriesEndpoint(this);
             People = new FlickrPeopleEndpoint(this);
             Photosets = new FlickrPhotosetsEndpoint(this);
             Photos = new FlickrPhotosEndpoint(this);
+            Places = new FlickrPlacesEndpoint(this);
             Test = new FlickrTestEndpoint(this);
         }
 

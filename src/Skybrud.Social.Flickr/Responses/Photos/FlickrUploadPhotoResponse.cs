@@ -33,7 +33,7 @@ namespace Skybrud.Social.Flickr.Responses.Photos {
 
             // Initialize the response object
             return new FlickrUploadPhotoResponse(response) {
-                Body = ParseXml(response.Body, FlickrUploadPhotoResponseBody.Parse)
+                Body = ParseXmlElement(response.Body, FlickrUploadPhotoResponseBody.Parse)
             };
 
         }

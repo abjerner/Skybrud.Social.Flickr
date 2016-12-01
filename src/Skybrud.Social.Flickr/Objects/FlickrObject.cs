@@ -1,19 +1,12 @@
 ﻿using System.Xml.Linq;
-using Newtonsoft.Json;
+using Skybrud.Essentials.Xml;
 
 namespace Skybrud.Social.Flickr.Objects {
     
     /// <summary>
     /// Class representing a basic object from the Flickr API derived from an instance of <see cref="XElement"/>.
     /// </summary>
-    public class FlickrObject {
-
-        #region Properties
-
-        [JsonIgnore]
-        public XElement XElement { get; private set; }
-
-        #endregion
+    public class FlickrObject : XmlObjectBase {
 
         #region Constructor
 
@@ -21,9 +14,7 @@ namespace Skybrud.Social.Flickr.Objects {
         /// Initializes a new instance from the specified <code>xml</code>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
-        protected FlickrObject(XElement xml) {
-            XElement = xml;
-        }
+        protected FlickrObject(XElement xml) : base(xml) { }
 
         #endregion
 

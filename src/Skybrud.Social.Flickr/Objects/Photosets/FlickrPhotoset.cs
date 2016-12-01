@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
-using Skybrud.Social.Exceptions;
-using Skybrud.Social.Flickr.Enums;
-using Skybrud.Social.Flickr.Objects.Places;
-using Skybrud.Social.Time;
-using Skybrud.Social.Xml.Extensions;
+using Skybrud.Essentials.Time;
+using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Photosets {
     
@@ -39,9 +36,9 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
 
         public bool CanComment { get; private set; }
 
-        public SocialDateTime Created { get; private set; }
+        public EssentialsDateTime Created { get; private set; }
 
-        public SocialDateTime Updated { get; private set; }
+        public EssentialsDateTime Updated { get; private set; }
 
         public string CoverPhotoServer { get; private set; }
 
@@ -89,13 +86,13 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
             Secret = xml.GetAttributeValue("secret");
             Server = xml.GetAttributeValue("server");
             Farm = xml.GetAttributeValue("farm");
-            Photos = xml.GetAttributeAsInt32("photos");
-            Views = xml.GetAttributeAsInt32("count_views");
-            Comments = xml.GetAttributeAsInt32("count_comments");
-            Videos = xml.GetAttributeAsInt32("count_videos");
+            Photos = xml.GetAttributeValueAsInt32("photos");
+            Views = xml.GetAttributeValueAsInt32("count_views");
+            Comments = xml.GetAttributeValueAsInt32("count_comments");
+            Videos = xml.GetAttributeValueAsInt32("count_videos");
             CanComment = xml.GetAttributeValue("can_comment") == "1";
-            Created = xml.GetAttributeAsInt64("date_create", SocialDateTime.FromUnixTimestamp);
-            Updated = xml.GetAttributeAsInt64("date_update", SocialDateTime.FromUnixTimestamp);
+            Created = xml.GetAttributeValueAsInt64("date_create", EssentialsDateTime.FromUnixTimestamp);
+            Updated = xml.GetAttributeValueAsInt64("date_update", EssentialsDateTime.FromUnixTimestamp);
             CoverPhotoServer = xml.GetAttributeValue("coverphoto_server");
             CoverPhotoFarm = xml.GetAttributeValue("coverphoto_farm");
 
