@@ -13,6 +13,16 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         #region Properties
 
         /// <summary>
+        /// Gets the ID of the place.
+        /// </summary>
+        public string Id { get; private set; }
+
+        /// <summary>
+        /// Gets <strong>Where On Earth (WOE)</strong> ID of the place.
+        /// </summary>
+        public string WoeId { get; private set; }
+
+        /// <summary>
         /// Gets the latitude of the place.
         /// </summary>
         public double Latitude { get; private set; }
@@ -23,21 +33,39 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         public double Longitude { get; private set; }
 
         /// <summary>
-        /// Gets the accuracy of the place.
+        /// Gets the internal Flickr URL of the place.
         /// </summary>
-        public int Accuracy { get; private set; }
-
-        // TODO: Implement property for the "context" attribute
+        public string PlaceUrl { get; private set; }
 
         /// <summary>
-        /// Gets the ID of the place.
+        /// Gets the type of the place.
         /// </summary>
-        public string Id { get; private set; }
+        public FlickrPlaceType PlaceType { get; private set; }
 
         /// <summary>
-        /// Gets Where On Earth (WOE) ID of the place.
+        /// Gets the ID of the type of the place.
         /// </summary>
-        public string WoeId { get; private set; }
+        public int PlaceTypeId { get; private set; }
+
+        /// <summary>
+        /// Gets the name of the timezone of the place - eg. <code>Europe/London</code>.
+        /// </summary>
+        public string Timezone { get; private set; }
+
+        /// <summary>
+        /// Gets the name of the place.
+        /// </summary>
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// Gets the name of the <strong>Where On Earth (WOE)</strong> of the place.
+        /// </summary>
+        public string WoeName { get; private set; }
+
+        /// <summary>
+        /// Gets whether any shape data is available for the place.
+        /// </summary>
+        public bool HasShapeData { get; private set; }
 
         /// <summary>
         /// Gets a reference to the neighbourhood of the place.
@@ -99,28 +127,6 @@ namespace Skybrud.Social.Flickr.Objects.Places {
             get { return Country != null; }
         }
 
-        /// <summary>
-        /// Gets the name of the place.
-        /// </summary>
-        public string Name { get; private set; }
-
-        /// <summary>
-        /// Gets the type of the place.
-        /// </summary>
-        public FlickrPlaceType Type {
-            get {
-                if (HasNeighbourhood) return FlickrPlaceType.Neighbourhood;
-                if (HasLocality) return FlickrPlaceType.Locality;
-                if (HasCounty) return FlickrPlaceType.County;
-                if (HasRegion) return FlickrPlaceType.Region;
-                if (HasCountry) return FlickrPlaceType.County;
-                return FlickrPlaceType.Unknown;
-            }
-        }
-
-        public string PlaceType { get; private set; }
-        public int PlaceTypeId { get; private set; }
-
         #endregion
 
         #region Constructor
@@ -130,19 +136,26 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPlace(XElement xml) : base(xml) {
-            Latitude = xml.GetAttributeValue<double>("latitude");
-            Longitude = xml.GetAttributeValue<double>("longitude");
-            Accuracy = xml.GetAttributeValue<int>("accuracy");
+            
+            // Attributes
             Id = xml.GetAttributeValue("place_id");
             WoeId = xml.GetAttributeValue("woeid");
+            Latitude = xml.GetAttributeValue<double>("latitude");
+            Longitude = xml.GetAttributeValue<double>("longitude");
+            PlaceUrl = xml.GetAttributeValue("place_url");
+            PlaceType = xml.GetAttributeValueAsEnum<FlickrPlaceType>("place_type");
+            PlaceTypeId = xml.GetAttributeValue<int>("place_type_id");
+            Timezone = xml.GetAttributeValue("timezone");
+            Name = xml.GetAttributeValue("name");
+            WoeName = xml.GetAttributeValue("woe_name");
+
+            // Elements
             Neighbourhood = xml.GetElement("neighbourhood", FlickrPlaceItem.Parse);
             Locality = xml.GetElement("locality", FlickrPlaceItem.Parse);
             County = xml.GetElement("county", FlickrPlaceItem.Parse);
-            Name = xml.GetElementValue("name");
             Region = xml.GetElement("region", FlickrPlaceItem.Parse);
             Country = xml.GetElement("country", FlickrPlaceItem.Parse);
-            PlaceType = xml.GetAttributeValue("place_type");
-            PlaceTypeId = xml.GetAttributeValue<int>("place_type_id");
+        
         }
 
         #endregion
