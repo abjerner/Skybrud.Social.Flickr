@@ -102,16 +102,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// <summary>
         /// Gets the name of the place.
         /// </summary>
-        public string Name {
-            get {
-                if (HasNeighbourhood) return Neighbourhood.Name;
-                if (HasLocality) return Locality.Name;
-                if (HasCounty) return County.Name;
-                if (HasRegion) return Region.Name;
-                if (HasCountry) return Country.Name;
-                return null;
-            }
-        }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets the type of the place.
@@ -147,6 +138,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
             Neighbourhood = xml.GetElement("neighbourhood", FlickrPlaceItem.Parse);
             Locality = xml.GetElement("locality", FlickrPlaceItem.Parse);
             County = xml.GetElement("county", FlickrPlaceItem.Parse);
+            Name = xml.GetElementValue("name");
             Region = xml.GetElement("region", FlickrPlaceItem.Parse);
             Country = xml.GetElement("country", FlickrPlaceItem.Parse);
             PlaceType = xml.GetAttributeValue("place_type");
