@@ -35,22 +35,6 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         #region Member methods
 
         /// <summary>
-        /// Gets information about the place with the specified <paramref name="placeId"/>.
-        /// </summary>
-        /// <param name="placeId">The ID of the place to fetch information about.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
-        /// <see>
-        ///     <cref>https://www.flickr.com/services/api/flickr.places.getInfo.html</cref>
-        /// </see>
-        public SocialHttpResponse GetInfo(string placeId) {
-            if (String.IsNullOrWhiteSpace(placeId)) throw new ArgumentNullException("placeId");
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
-                {"method", "flickr.places.getInfo"},
-                {"place_id", placeId}
-            });
-        }
-
-        /// <summary>
         /// Return a list of places matching the specified <paramref name="query"/>.
         /// </summary>
         /// <param name="query">The query string to use for place ID lookups.</param>
@@ -119,6 +103,22 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
                 {"method", "flickr.places.findByLatLon"},
                 {"lat", latitude.ToString(CultureInfo.InvariantCulture)},
                 {"lon", longitude.ToString(CultureInfo.InvariantCulture)}
+            });
+        }
+
+        /// <summary>
+        /// Gets information about the place with the specified <paramref name="placeId"/>.
+        /// </summary>
+        /// <param name="placeId">The ID of the place to fetch information about.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://www.flickr.com/services/api/flickr.places.getInfo.html</cref>
+        /// </see>
+        public SocialHttpResponse GetInfo(string placeId) {
+            if (String.IsNullOrWhiteSpace(placeId)) throw new ArgumentNullException("placeId");
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+                {"method", "flickr.places.getInfo"},
+                {"place_id", placeId}
             });
         }
 
