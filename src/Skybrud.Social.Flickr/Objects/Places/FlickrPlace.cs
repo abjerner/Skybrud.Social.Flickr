@@ -48,7 +48,8 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         public int PlaceTypeId { get; private set; }
 
         /// <summary>
-        /// Gets the name of the timezone of the place - eg. <code>Europe/London</code>.
+        /// Gets the name of the timezone of the place - eg. <code>Europe/London</code> or
+        /// <code>Europe/Copenhagen</code>.
         /// </summary>
         public string Timezone { get; private set; }
 
@@ -132,7 +133,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPlace(XElement xml) : base(xml) {
@@ -164,7 +165,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrPlace"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrPlace"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
         public static FlickrPlace Parse(XElement xml) {

@@ -5,19 +5,37 @@ using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Places {
 
+    /// <summary>
+    /// Class representing a collection of <see cref="FlickrPlaceItem"/> as returned by <code>flickr.places.find</code>
+    /// API method.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://www.flickr.com/services/api/flickr.places.find.html</cref>
+    /// </see>
     public class FlickrPlacesFindCollection : FlickrObject, IEnumerable<FlickrPlaceItem> {
 
         #region Properties
 
+        /// <summary>
+        /// The search query as specified in the request to the Flickr API. 
+        /// </summary>
         public string Query { get; private set; }
 
+        /// <summary>
+        /// Gets the total amount of places returned by the search.
+        /// </summary>
         public int Total { get; private set; }
 
         /// <summary>
-        /// Gets a reference to an array of <see cref="FlickrPlaceItem"/> with brief information about each place.
+        /// Gets an array of <see cref="FlickrPlaceItem"/> with the matched places.
         /// </summary>
         public FlickrPlaceItem[] Items { get; private set; }
 
+        /// <summary>
+        /// Gets a reference to the <see cref="FlickrPlaceItem"/> at the specified <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index of the item to be returned.</param>
+        /// <returns>Returns an instance of <see cref="FlickrPlaceItem"/>.</returns>
         public FlickrPlaceItem this[int index] {
             get { return Items[index]; }
         }
@@ -27,7 +45,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPlacesFindCollection(XElement xml) : base(xml) {
@@ -53,7 +71,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrPlacesFindCollection"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrPlacesFindCollection"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
         public static FlickrPlacesFindCollection Parse(XElement xml) {

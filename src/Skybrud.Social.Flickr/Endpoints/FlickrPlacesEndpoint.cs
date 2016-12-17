@@ -2,7 +2,10 @@
 using Skybrud.Social.Flickr.Responses.Places;
 
 namespace Skybrud.Social.Flickr.Endpoints {
-    
+
+    /// <summary>
+    /// Class representing the implementation of the places Flickr endpoint.
+    /// </summary>
     public class FlickrPlacesEndpoint {
 
         #region Properties
@@ -23,7 +26,11 @@ namespace Skybrud.Social.Flickr.Endpoints {
 
         #region Constructors
 
-        public FlickrPlacesEndpoint(FlickrService service) {
+        /// <summary>
+        /// Initializes a new instanc based on the specified <paramref name="service"/>.
+        /// </summary>
+        /// <param name="service">An instance of <see cref="FlickrService"/> representing the parent service.</param>
+        internal FlickrPlacesEndpoint(FlickrService service) {
             Service = service;
         }
 
@@ -32,7 +39,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         #region Member methods
 
         /// <summary>
-        /// Gets information about the place with the specified <code>placeId</code>.
+        /// Gets information about the place with the specified <paramref name="placeId"/>.
         /// </summary>
         /// <param name="placeId">The ID of the place to fetch information about.</param>
         /// <returns>Returns an instance of <see cref="FlickrPlacesGetInfoResponse"/> representing the response.</returns>
@@ -44,7 +51,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         }
 
         /// <summary>
-        /// Return a list of places matching the specified <code>query</code>.
+        /// Return a list of places matching the specified <paramref name="query"/>.
         /// </summary>
         /// <param name="query">The query string to use for place ID lookups.</param>
         /// <returns>Returns an instance of <see cref="FlickrPlacesFindResponse"/> representing the response.</returns>
@@ -56,7 +63,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         }
 
         /// <summary>
-        /// Returns a place for the specified <code>latitude</code> and <code>longitude</code>.
+        /// Returns a place for the specified <paramref name="latitude"/> and <see cref="longitude"/>.
         /// 
         /// The flickr.places.findByLatLon method is not meant to be a (reverse) geocoder in the traditional sense. It
         /// is designed to allow users to find photos for "places" and will round up to the nearest place type to which
@@ -80,7 +87,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         }
 
         /// <summary>
-        /// Returns a place for the specified <code>latitude</code> and <code>longitude</code>.
+        /// Returns a place for the specified <paramref name="latitude"/> and <see cref="longitude"/>.
         /// 
         /// The flickr.places.findByLatLon method is not meant to be a (reverse) geocoder in the traditional sense. It
         /// is designed to allow users to find photos for "places" and will round up to the nearest place type to which
