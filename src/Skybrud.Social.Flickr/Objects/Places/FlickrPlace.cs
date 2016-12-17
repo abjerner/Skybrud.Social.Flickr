@@ -148,6 +148,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
             Timezone = xml.GetAttributeValue("timezone");
             Name = xml.GetAttributeValue("name");
             WoeName = xml.GetAttributeValue("woe_name");
+            HasShapeData = xml.GetAttributeValueAsBoolean("has_shapedata");
 
             // Elements
             Neighbourhood = xml.GetElement("neighbourhood", FlickrPlaceItem.Parse);
