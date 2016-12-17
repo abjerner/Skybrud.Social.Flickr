@@ -121,7 +121,7 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
             Server = xml.GetAttributeValue("server");
             Farm = xml.GetAttributeValue("farm");
             Uploaded = xml.GetAttributeValueAsInt64("dateuploaded", EssentialsDateTime.FromUnixTimestamp);
-            IsFavorite = xml.GetAttributeAsBoolean("isfavorite");
+            IsFavorite = xml.GetAttributeValueAsBoolean("isfavorite");
             LicenseId = xml.GetAttributeValueAsInt32("license");
             SafetyLevel = xml.GetAttributeValueAsInt32("safety_level", ParseSafetyLevel);
             OriginalSecret = xml.GetAttributeValue("originalsecret");

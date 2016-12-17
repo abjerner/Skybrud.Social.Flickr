@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Skybrud.Essentials.Xml.Extensions;
-using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Photosets {
     
@@ -45,7 +44,7 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
             Pages = xml.GetAttributeValueAsInt32("pages");
             PerPage = xml.GetAttributeValueAsInt32("perpage");
             Total = xml.GetAttributeValueAsInt32("total");
-            CanCreate = xml.GetAttributeAsBoolean("cancreate");
+            CanCreate = xml.GetAttributeValueAsBoolean("cancreate");
 
             // Parse elements
             Items = xml.GetElements("photoset", FlickrPhotoset.Parse);
