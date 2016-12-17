@@ -17,8 +17,7 @@ namespace Skybrud.Social.Flickr.Responses.Places {
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The instance of <see cref="SocialHttpResponse"/> the response should be based on.</param>
-        private FlickrPlacesGetInfoResponse(SocialHttpResponse response)
-            : base(response) {
+        private FlickrPlacesGetInfoResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);

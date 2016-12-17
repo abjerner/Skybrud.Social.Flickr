@@ -13,6 +13,10 @@ namespace Skybrud.Social.Flickr.Responses {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="response"/>.
+        /// </summary>
+        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> the response should be based on.</param>
         protected FlickrResponse(SocialHttpResponse response) : base(response) { }
 
         #endregion
@@ -20,7 +24,7 @@ namespace Skybrud.Social.Flickr.Responses {
         #region Static methods
 
         /// <summary>
-        /// Validates the specified <code>response</code>.
+        /// Validates the specified <see cref="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
         public static void ValidateResponse(SocialHttpResponse response) {
@@ -65,6 +69,10 @@ namespace Skybrud.Social.Flickr.Responses {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="response"/>.
+        /// </summary>
+        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> the response should be based on.</param>
         protected FlickrResponse(SocialHttpResponse response) : base(response) { }
 
         #endregion
