@@ -143,6 +143,9 @@ namespace Skybrud.Social.Flickr.OAuth {
             // Make the call to the API
             SocialHttpResponse response = SocialUtils.Http.DoHttpGetRequest(RequestTokenUrl, queryString);
 
+            // Validate the response
+            FlickrResponse.ValidateResponse(response);
+
             // Parse the response body
             SocialOAuthRequestToken body = SocialOAuthRequestToken.Parse(this, response.Body);
 
@@ -180,6 +183,9 @@ namespace Skybrud.Social.Flickr.OAuth {
 
             // Make the call to the API
             SocialHttpResponse response = SocialUtils.Http.DoHttpGetRequest(AccessTokenUrl, queryString);
+
+            // Validate the response
+            FlickrResponse.ValidateResponse(response);
 
             // Parse the response body
             SocialOAuthAccessToken body = SocialOAuthAccessToken.Parse(this, response.Body);

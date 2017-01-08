@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Specialized;
+using System.Net;
 using System.Xml.Linq;
 using Skybrud.Social.Flickr.Exceptions;
 using Skybrud.Social.Http;
@@ -29,10 +30,20 @@ namespace Skybrud.Social.Flickr.Responses {
         /// <param name="response">The response to be validated.</param>
         public static void ValidateResponse(SocialHttpResponse response) {
 
+            // Parse the OAuth error
+            if (response.Body.StartsWith("oauth_problem=")) throw new FlickrOAuthException(response);
+
             // Throw a "FlickrHttpException" if we have an error at the HTTP level
             if (response.StatusCode != HttpStatusCode.OK) throw new FlickrHttpException(response);
 
-            // TODO: We really shouldn't parse the XML both here and when actually parsing the response body into the strongly typed model(s)
+            // Some further validation for XML responses
+            if (response.Body.StartsWith("<")) ValidateXmlResponse(response);
+        
+        }
+
+        public static void ValidateXmlResponse(SocialHttpResponse response) {
+
+            // Parse the XML
             XElement xResponse = XElement.Parse(response.Body);
 
             // Get the status of the response
@@ -46,7 +57,7 @@ namespace Skybrud.Social.Flickr.Responses {
             int code = xError.GetAttributeValueAsInt32("code");
             string message = xError.GetAttributeValue("msg");
             throw new FlickrApiException(response, code, message);
-        
+            
         }
 
         #endregion
