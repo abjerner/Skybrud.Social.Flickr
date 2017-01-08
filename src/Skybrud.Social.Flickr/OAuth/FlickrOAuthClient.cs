@@ -188,6 +188,20 @@ namespace Skybrud.Social.Flickr.OAuth {
             return SocialOAuthAccessTokenResponse.ParseResponse(response, body);
         
         }
+
+        /// <summary>
+        /// Adds the OAuth 1.0a authorization header to the request
+        /// </summary>
+        /// <param name="request"></param>
+        protected override void PrepareHttpRequest(SocialHttpRequest request) {
+
+            // Skip OAuth 1.0a signed requests if no OAuth information is specified (this is a Flickr feature, not OAuth)
+            if (String.IsNullOrWhiteSpace(ConsumerKey + ConsumerSecret + Token + TokenSecret)) return;
+
+            // Sign requests using the logic in "SocialOAuthClient"
+            base.PrepareHttpRequest(request);
+
+        }
     
     }
 
