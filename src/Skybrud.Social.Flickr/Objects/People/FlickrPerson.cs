@@ -13,6 +13,11 @@ namespace Skybrud.Social.Flickr.Objects.People {
         public string Id { get; private set; }
 
         /// <summary>
+        /// Gets the path alias of the person.
+        /// </summary>
+        public string PathAlias { get; private set; }
+
+        /// <summary>
         /// Gets the username of the person.
         /// </summary>
         public string Username { get; private set; }
@@ -32,6 +37,7 @@ namespace Skybrud.Social.Flickr.Objects.People {
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPerson(XElement xml) : base(xml) {
             Id = xml.GetAttributeValue("id");
+            PathAlias = xml.GetAttributeValue("path_alias");
             Username = xml.GetElementValue("username");
             RealName = xml.GetElementValue("realname");
         }

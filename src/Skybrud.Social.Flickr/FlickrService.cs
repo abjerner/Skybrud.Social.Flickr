@@ -44,6 +44,11 @@ namespace Skybrud.Social.Flickr {
         /// </summary>
         public FlickrTestEndpoint Test { get; private set; }
 
+        /// <summary>
+        /// Gets a reference to the URLs endpoint.
+        /// </summary>
+        public FlickrUrlsEndpoint Urls { get; private set; }
+
         #endregion
 
         #region Constructors
@@ -61,6 +66,7 @@ namespace Skybrud.Social.Flickr {
             Photos = new FlickrPhotosEndpoint(this);
             Places = new FlickrPlacesEndpoint(this);
             Test = new FlickrTestEndpoint(this);
+            Urls = new FlickrUrlsEndpoint(this);
         }
 
         #endregion

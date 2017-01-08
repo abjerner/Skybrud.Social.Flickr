@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using Skybrud.Social.Flickr.Enums;
 using Skybrud.Social.Flickr.OAuth;
+using Skybrud.Social.Flickr.Objects.Places;
+using Skybrud.Social.Flickr.Options.Places;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
@@ -106,6 +110,8 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
             });
         }
 
+        // TODO: https://www.flickr.com/services/api/flickr.places.getChildrenWithPhotosPublic.html
+
         /// <summary>
         /// Gets information about the place with the specified <paramref name="placeId"/>.
         /// </summary>
@@ -121,6 +127,68 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
                 {"place_id", placeId}
             });
         }
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.getInfoByUrl.html
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.getPlaceTypes.html
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.getShapeHistory.html
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.getTopPlacesList.html
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.placesForBoundingBox.html
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.placesForContacts.html
+
+        /// <summary>
+        /// Gets a list of the top 100 unique places clustered by a given placetype for a user's contacts.
+        /// </summary>
+        /// <param name="placeType">A place type to cluster photos by. </param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        public SocialHttpResponse PlacesForContacts(FlickrPlaceType placeType) {
+            return PlacesForContacts(new FlickrGetPlacesForContactsOptions {
+                PlaceType = placeType
+            });
+        }
+
+        /// <summary>
+        /// Gets a list of the top 100 unique places clustered by a given placetype for a user's contacts.
+        /// </summary>
+        /// <param name="placeType">A place type to cluster photos by. </param>
+        /// <param name="placeId">A Flickr Places identifier to use to filter photo clusters.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        public SocialHttpResponse PlacesForContacts(FlickrPlaceType placeType, string placeId) {
+            return PlacesForContacts(new FlickrGetPlacesForContactsOptions {
+                PlaceType = placeType,
+                PlaceId = placeId
+            });
+        }
+
+        /// <summary>
+        /// Gets a list of the top 100 unique places clustered by a given placetype for a user's contacts.
+        /// </summary>
+        /// <param name="options">The options for the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        public SocialHttpResponse PlacesForContacts(FlickrGetPlacesForContactsOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+        }
+        
+        public SocialHttpResponse GetPlacesForTags(FlickrPlaceType placeType, string[] tags) {
+            return GetPlacesForTags(new FlickrGetPlacesForTagsOptions {
+                PlaceType = placeType,
+                Tags = tags
+            });
+        }
+
+        public SocialHttpResponse GetPlacesForTags(FlickrGetPlacesForTagsOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+        }
+        
+        // TODO: https://www.flickr.com/services/api/flickr.places.placesForUser.html
+
+        // TODO: https://www.flickr.com/services/api/flickr.places.tagsForPlace.html
 
         #endregion
 

@@ -53,12 +53,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Endpoints\FlickrGalleriesEndpoint.cs" />
+    <Compile Include="Endpoints\FlickrUrlsEndpoint.cs" />
     <Compile Include="Endpoints\FlickrPlacesEndpoint.cs" />
     <Compile Include="Endpoints\FlickrPeopleEndpoint.cs" />
     <Compile Include="Endpoints\FlickrPhotosEndpoint.cs" />
     <Compile Include="Endpoints\FlickrPhotoSetsEndpoint.cs" />
     <Compile Include="Endpoints\FlickrTestEndpoint.cs" />
     <Compile Include="Endpoints\Raw\FlickrGalleriesRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\FlickrGroupsRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\FlickrUrlsRawEndpoint.cs" />
+    <Compile Include="Enums\FlickrContactsMode.cs" />
+    <Compile Include="Enums\FlickrTagMode.cs" />
+    <Compile Include="Exceptions\FlickrOAuthException.cs" />
+    <Compile Include="Objects\Urls\FlickrUrlsLookupUserResponseBody.cs" />
+    <Compile Include="Options\Groups\FlickrGroupsGetInfoOptions.cs" />
+    <Compile Include="Options\Places\FlickrGetPlacesForTagsOptions.cs" />
+    <Compile Include="Options\Places\FlickrGetPlacesForContactsOptions.cs" />
     <Compile Include="Endpoints\Raw\FlickrPlacesRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\FlickrPeopleRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\FlickrPhotoSetsRawEndpoint.cs" />
@@ -108,12 +118,14 @@
     <Compile Include="Responses\Places\FlickrPlacesFindByLatLonResponse.cs" />
     <Compile Include="Responses\Places\FlickrPlacesFindResponse.cs" />
     <Compile Include="Responses\Places\FlickrPlacesGetInfoResponse.cs" />
+    <Compile Include="Responses\Urls\FlickrUrlsLookupUserResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.json" />
     <None Include="Skybrud.Social.Flickr.nuspec" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)build\Skybrud.Social.PreBuildTool.exe" 2016-06-18 "$(ProjectPath)"</PreBuildEvent>
