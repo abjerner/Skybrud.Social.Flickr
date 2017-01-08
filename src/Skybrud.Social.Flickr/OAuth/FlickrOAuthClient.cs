@@ -135,6 +135,7 @@ namespace Skybrud.Social.Flickr.OAuth {
                 {"oauth_timestamp", Timestamp},
                 {"oauth_consumer_key", ConsumerKey},
                 {"oauth_signature_method", "HMAC-SHA1"},
+                {"oauth_version", "1.0"},
                 {"oauth_signature", signature},
                 {"oauth_callback", Callback}
             };
@@ -172,6 +173,7 @@ namespace Skybrud.Social.Flickr.OAuth {
             queryString.Add("oauth_timestamp", Timestamp);
             queryString.Add("oauth_consumer_key", ConsumerKey);
             queryString.Add("oauth_signature_method", "HMAC-SHA1");
+            queryString.Add("oauth_version", "1.0");
             queryString.Add("oauth_token", Token);
             if (!String.IsNullOrWhiteSpace(Callback)) queryString.Add("oauth_callback", Callback);
             queryString.Add("oauth_signature", signature);
