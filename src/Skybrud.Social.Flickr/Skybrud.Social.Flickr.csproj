@@ -60,13 +60,16 @@
     <Compile Include="Endpoints\FlickrPhotoSetsEndpoint.cs" />
     <Compile Include="Endpoints\FlickrTestEndpoint.cs" />
     <Compile Include="Endpoints\Raw\FlickrGalleriesRawEndpoint.cs" />
+    <Compile Include="Options\Galleries\FlickrCreateGalleryOptions.cs" />
+    <Compile Include="Options\Galleries\FlickrGetGalleryListOptions.cs" />
+    <Compile Include="Options\Galleries\FlickrGetGalleryInfoOptions.cs" />
+    <Compile Include="Options\Groups\FlickrGetGroupInfoOptions.cs" />
     <Compile Include="Endpoints\Raw\FlickrGroupsRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\FlickrUrlsRawEndpoint.cs" />
     <Compile Include="Enums\FlickrContactsMode.cs" />
     <Compile Include="Enums\FlickrTagMode.cs" />
     <Compile Include="Exceptions\FlickrOAuthException.cs" />
     <Compile Include="Objects\Urls\FlickrUrlsLookupUserResponseBody.cs" />
-    <Compile Include="Options\Groups\FlickrGroupsGetInfoOptions.cs" />
     <Compile Include="Options\Places\FlickrGetPlacesForTagsOptions.cs" />
     <Compile Include="Options\Places\FlickrGetPlacesForContactsOptions.cs" />
     <Compile Include="Endpoints\Raw\FlickrPlacesRawEndpoint.cs" />

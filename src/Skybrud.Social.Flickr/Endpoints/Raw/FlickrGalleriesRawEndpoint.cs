@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Collections.Specialized;
 using Skybrud.Social.Flickr.OAuth;
+using Skybrud.Social.Flickr.Options.Galleries;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
-    
+
+    /// <summary>
+    /// Class representing the raw implementation of the galleries Flickr endpoint.
+    /// </summary>
     public class FlickrGalleriesRawEndpoint {
 
         #region Properties
@@ -18,7 +21,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
         #region Constructors
 
-        public FlickrGalleriesRawEndpoint(FlickrOAuthClient client) {
+        internal FlickrGalleriesRawEndpoint(FlickrOAuthClient client) {
             Client = client;
         }
 
@@ -27,42 +30,86 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         #region Member methods
 
         /// <summary>
-        /// Gets a list of galleries created by the user with the specified <code>userId</code>. Sorted from newest to oldest.
+        /// Creates a new gallery with the specified <paramref name="title"/> and <paramref name="description"/>.
         /// </summary>
+        /// <param name="title">The title of the gallery.</param>
+        /// <param name="description">The description of the gallery.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://www.flickr.com/services/api/flickr.galleries.create.html</cref>
+        /// </see>
+        public SocialHttpResponse Create(string title, string description) {
+            if (String.IsNullOrWhiteSpace(title)) throw new ArgumentNullException("title");
+            if (String.IsNullOrWhiteSpace(description)) throw new ArgumentNullException("description");
+            return Create(new FlickrCreateGalleryOptions(title, description));
+        }
+
+        /// <summary>
+        /// Creates a new gallery with the specified <paramref name="options"/>.
+        /// </summary>
+        /// <param name="options">The options for the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://www.flickr.com/services/api/flickr.galleries.create.html</cref>
+        /// </see>
+        public SocialHttpResponse Create(FlickrCreateGalleryOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+        }
+
+        /// <summary>
+        /// Gets information about the gallery with the specified <code>galleryId</code>.
+        /// </summary>
+        /// <param name="galleryId">The ID of the gallery to fetch information about.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getInfo.html</cref>
+        /// </see>
+        public SocialHttpResponse GetInfo(string galleryId) {
+            if (String.IsNullOrWhiteSpace(galleryId)) throw new ArgumentNullException("galleryId");
+            return GetInfo(new FlickrGetGalleryInfoOptions(galleryId));
+        }
+
+        /// <summary>
+        /// Gets information about the gallery matching the specified <paramref name="options"/>.
+        /// </summary>
+        /// <param name="options">The options for the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getInfo.html</cref>
+        /// </see>
+        public SocialHttpResponse GetInfo(FlickrGetGalleryInfoOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+        }
+
+        /// <summary>
+        /// Gets a list of galleries created by the user with the specified <code>userId</code>. Sorted from newest to
+        /// oldest.
+        /// </summary>
+        /// <param name="userId">The ID of the user to get a galleries list for. If none is specified, the calling user
+        /// is assumed.</param>
         /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getList.html</cref>
         /// </see>
         public SocialHttpResponse GetList(string userId) {
             if (String.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException("userId");
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
-                {"method", "flickr.galleries.getList"},
-                {"user_id", userId}
-            });
+            return GetList(new FlickrGetGalleryListOptions(userId));
         }
 
         /// <summary>
-        /// 
+        /// Gets a list of galleries created by the user matching the specified <paramref name="options"/>. Sorted from
+        /// newest to oldest.
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="description"></param>
-        /// <returns></returns>
+        /// <param name="options">The options for the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://www.flickr.com/services/api/flickr.galleries.create.html</cref>
+        ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getList.html</cref>
         /// </see>
-        public SocialHttpResponse Create(string title, string description) {
-            if (String.IsNullOrWhiteSpace(title)) throw new ArgumentNullException("title");
-            return Client.DoHttpRequest(
-                SocialHttpMethod.Post,
-                "https://api.flickr.com/services/rest",
-                new NameValueCollection {
-                    {"method", "flickr.galleries.create"},
-                },
-                new NameValueCollection {
-                    {"title", title},
-                    {"description", description}
-                }
-            );
+        public SocialHttpResponse GetList(FlickrGetGalleryListOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }
 
         #endregion
