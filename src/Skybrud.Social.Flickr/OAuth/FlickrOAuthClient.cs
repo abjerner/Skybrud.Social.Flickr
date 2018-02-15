@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Specialized;
 using Skybrud.Essentials.Common;
 using Skybrud.Social.Flickr.Endpoints.Raw;
 using Skybrud.Social.Flickr.Responses;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.OAuth;
-using Skybrud.Social.OAuth.Objects;
+using Skybrud.Social.OAuth.Models;
 using Skybrud.Social.OAuth.Responses;
 
 namespace Skybrud.Social.Flickr.OAuth {
@@ -137,7 +136,7 @@ namespace Skybrud.Social.Flickr.OAuth {
             string signature = GenerateSignature(SocialHttpMethod.Get, RequestTokenUrl, default(IHttpQueryString), null);
 
             // Append the OAuth properties to the query string
-            NameValueCollection queryString = new NameValueCollection {
+            SocialHttpQueryString queryString = new SocialHttpQueryString {
                 {"oauth_nonce", Nonce},
                 {"oauth_timestamp", Timestamp},
                 {"oauth_consumer_key", ConsumerKey},
@@ -173,7 +172,9 @@ namespace Skybrud.Social.Flickr.OAuth {
             if (Token == null) throw new PropertyNotSetException("Token");
 
             // Initialize the query string
-            NameValueCollection queryString = new NameValueCollection { { "oauth_verifier", verifier } };
+            SocialHttpQueryString queryString = new SocialHttpQueryString {
+                { "oauth_verifier", verifier }
+            };
 
             // Generate the OAuth signature
             string signature = GenerateSignature(SocialHttpMethod.Get, AccessTokenUrl, queryString, null);

@@ -43,7 +43,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
             if (String.IsNullOrWhiteSpace(photosetId)) throw new ArgumentNullException("photosetId");
 
             // Initialize the query string
-            NameValueCollection query = new NameValueCollection {
+            SocialHttpQueryString query = new SocialHttpQueryString {
                 {"method", "flickr.photosets.getInfo"},
                 {"photoset_id", photosetId}
             };

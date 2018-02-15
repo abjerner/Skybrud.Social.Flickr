@@ -33,7 +33,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         ///     <cref>https://www.flickr.com/services/api/flickr.test.login.html</cref>
         /// </see>
         public SocialHttpResponse Login() {
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.test.login"},
             });
         }

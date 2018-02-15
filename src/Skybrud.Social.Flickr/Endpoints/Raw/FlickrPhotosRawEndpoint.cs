@@ -37,7 +37,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetInfo(string photoId) {
             if (String.IsNullOrWhiteSpace(photoId)) throw new ArgumentNullException("photoId");
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.photos.getInfo"},
                 {"photo_id", photoId},
                 {"username", photoId}

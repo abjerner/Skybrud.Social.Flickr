@@ -43,7 +43,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse LookupUser(string url) {
             if (String.IsNullOrWhiteSpace(url)) throw new ArgumentNullException("url");
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.urls.lookupUser"},
                 {"url", url}
             });

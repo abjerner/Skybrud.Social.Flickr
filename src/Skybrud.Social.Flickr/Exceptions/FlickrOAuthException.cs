@@ -14,7 +14,7 @@ namespace Skybrud.Social.Flickr.Exceptions {
         #region Constructors
 
         public FlickrOAuthException(SocialHttpResponse response) : base(response) {
-            NameValueCollection body = SocialUtils.Misc.ParseQueryString(response.Body);
+            SocialHttpQueryString body = SocialHttpQueryString.ParseQueryString(response.Body);
             Problem = body["oauth_problem"] ?? "";
         }
 

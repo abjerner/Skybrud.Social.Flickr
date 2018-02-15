@@ -48,7 +48,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse Find(string query) {
             if (String.IsNullOrWhiteSpace(query)) throw new ArgumentNullException("query");
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.places.find"},
                 {"query", query}
             });
@@ -103,7 +103,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.htm</cref>
         /// </see>
         public SocialHttpResponse FindByLatLon(double latitude, double longitude, int accurary) {
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.places.findByLatLon"},
                 {"lat", latitude.ToString(CultureInfo.InvariantCulture)},
                 {"lon", longitude.ToString(CultureInfo.InvariantCulture)}
@@ -122,7 +122,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetInfo(string placeId) {
             if (String.IsNullOrWhiteSpace(placeId)) throw new ArgumentNullException("placeId");
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new NameValueCollection {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.places.getInfo"},
                 {"place_id", placeId}
             });

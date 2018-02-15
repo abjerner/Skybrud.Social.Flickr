@@ -1,146 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C9576C0F-680C-4CEB-85EF-F56DCD3A8461}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netstandard1.3;net45;net46</TargetFrameworks>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <RunBuildTargets>true</RunBuildTargets>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <RootNamespace>Skybrud.Social.Flickr</RootNamespace>
-    <AssemblyName>Skybrud.Social.Flickr</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Version>1.0.0-beta002</Version>
+    <Company>Skybrud.dk a/s</Company>
+    <Product>Skybrud.Social</Product>
+    <Authors>Anders Bjerner</Authors>
+    <Copyright>Copyright © 2016</Copyright>
+    <Description>Authentication and service implementation for the Flickr API.</Description>
+    <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.Flickr</RepositoryUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Skybrud.Essentials, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Essentials.1.0.5\lib\net45\Skybrud.Essentials.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Skybrud.Social.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Social.Core.1.0.0-beta5\lib\net45\Skybrud.Social.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Endpoints\FlickrGalleriesEndpoint.cs" />
-    <Compile Include="Endpoints\FlickrUrlsEndpoint.cs" />
-    <Compile Include="Endpoints\FlickrPlacesEndpoint.cs" />
-    <Compile Include="Endpoints\FlickrPeopleEndpoint.cs" />
-    <Compile Include="Endpoints\FlickrPhotosEndpoint.cs" />
-    <Compile Include="Endpoints\FlickrPhotoSetsEndpoint.cs" />
-    <Compile Include="Endpoints\FlickrTestEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\FlickrGalleriesRawEndpoint.cs" />
-    <Compile Include="Options\Galleries\FlickrCreateGalleryOptions.cs" />
-    <Compile Include="Options\Galleries\FlickrGetGalleryListOptions.cs" />
-    <Compile Include="Options\Galleries\FlickrGetGalleryInfoOptions.cs" />
-    <Compile Include="Options\Groups\FlickrGetGroupInfoOptions.cs" />
-    <Compile Include="Endpoints\Raw\FlickrGroupsRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\FlickrUrlsRawEndpoint.cs" />
-    <Compile Include="Enums\FlickrContactsMode.cs" />
-    <Compile Include="Enums\FlickrTagMode.cs" />
-    <Compile Include="Exceptions\FlickrOAuthException.cs" />
-    <Compile Include="Objects\Urls\FlickrUrlsLookupUserResponseBody.cs" />
-    <Compile Include="Options\Places\FlickrGetPlacesForTagsOptions.cs" />
-    <Compile Include="Options\Places\FlickrGetPlacesForContactsOptions.cs" />
-    <Compile Include="Endpoints\Raw\FlickrPlacesRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\FlickrPeopleRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\FlickrPhotoSetsRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\FlickrPhotosRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\FlickrTestRawEndpoint.cs" />
-    <Compile Include="Enums\FlickrPhotoContentType.cs" />
-    <Compile Include="Enums\FlickrPhotoSafetyLevel.cs" />
-    <Compile Include="Enums\FlickrPhotoSafetyVisibility.cs" />
-    <Compile Include="Enums\FlickrPlaceType.cs" />
-    <Compile Include="Exceptions\FlickrApiException.cs" />
-    <Compile Include="Exceptions\FlickrHttpException.cs" />
-    <Compile Include="FlickrService.cs" />
-    <Compile Include="OAuth\FlickrOAuthClient.cs" />
-    <Compile Include="Objects\FlickrObject.cs" />
-    <Compile Include="Objects\FlickrResponseBody.cs" />
-    <Compile Include="Objects\People\FlickrUser.cs" />
-    <Compile Include="Objects\People\FlickrFindByUsernameResponseBody.cs" />
-    <Compile Include="Objects\People\FlickrGetPersonResponseBody.cs" />
-    <Compile Include="Objects\People\FlickrPerson.cs" />
-    <Compile Include="Objects\Photosets\FlickrGetPhotosetInfoResponseBody.cs" />
-    <Compile Include="Objects\Photosets\FlickrGetPhotosetListResponseBody.cs" />
-    <Compile Include="Objects\Photosets\FlickrPhotoset.cs" />
-    <Compile Include="Objects\Photosets\FlickrPhotosetList.cs" />
-    <Compile Include="Objects\Photos\FlickrGetPhotoResponseBody.cs" />
-    <Compile Include="Objects\Photos\FlickrPhoto.cs" />
-    <Compile Include="Objects\Photos\FlickrPhotoOwner.cs" />
-    <Compile Include="Objects\Photos\FlickrPhotoUrls.cs" />
-    <Compile Include="Objects\Photos\FlickrUploadPhotoResponseBody.cs" />
-    <Compile Include="Objects\Places\FlickrPlacesFindByLatLonCollection.cs" />
-    <Compile Include="Objects\Places\FlickrPlacesFindByLatLonResponseBody.cs" />
-    <Compile Include="Objects\Places\FlickrPlacesFindCollection.cs" />
-    <Compile Include="Objects\Places\FlickrPlacesFindResponseBody.cs" />
-    <Compile Include="Objects\Places\FlickrPlacesGetInfoResponseBody.cs" />
-    <Compile Include="Objects\Places\FlickrPlace.cs" />
-    <Compile Include="Objects\Places\FlickrPlaceItem.cs" />
-    <Compile Include="Options\Photosets\FlickrGetPhotosetsOptions.cs" />
-    <Compile Include="Options\Photos\FlickrUploadPhotoOptions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyInfoGenerated.cs" />
-    <Compile Include="Responses\FlickrResponse.cs" />
-    <Compile Include="Responses\People\FlickrGetPersonResponse.cs" />
-    <Compile Include="Responses\People\FlickrFindByUsernameResponse.cs" />
-    <Compile Include="Responses\Photosets\FlickrGetPhotosetInfoResponse.cs" />
-    <Compile Include="Responses\Photosets\FlickrGetPhotosetListResponse.cs" />
-    <Compile Include="Responses\Photos\FlickrGetPhotoInfoResponse.cs" />
-    <Compile Include="Responses\Photos\FlickrUploadPhotoResponse.cs" />
-    <Compile Include="Responses\Places\FlickrPlacesFindByLatLonResponse.cs" />
-    <Compile Include="Responses\Places\FlickrPlacesFindResponse.cs" />
-    <Compile Include="Responses\Places\FlickrPlacesGetInfoResponse.cs" />
-    <Compile Include="Responses\Urls\FlickrUrlsLookupUserResponse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Properties\AssemblyInfo.json" />
-    <None Include="Skybrud.Social.Flickr.nuspec" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)build\Skybrud.Social.PreBuildTool.exe" 2016-06-18 "$(ProjectPath)"</PreBuildEvent>
+    <PackageTags>Flickr, API, Skybrud, Social, OAuth, Xml</PackageTags>
+    <PackageLicenseUrl>https://github.com/abjerner/Skybrud.Social.Flickr/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/abjerner/Skybrud.Social.Flickr</PackageProjectUrl>
+    <PackageIconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</PackageIconUrl>
   </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)build\UpdateAssemblyInfoJson.exe" "$(ProjectPath)" "$(TargetPath)"</PostBuildEvent>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
+    <DefineConstants>NET_STANDARD</DefineConstants>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+    <DefineConstants>NET_FRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Skybrud.Social.Core" Version="1.0.4" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\Skybrud.Social.Flickr.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>bin\Release\net45\Skybrud.Social.Flickr.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
+    <DocumentationFile>bin\Release\net46\Skybrud.Social.Flickr.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='netstandard1.3|true'">
+    <Exec Command="&quot;$(SolutionDir)build/Skybrud.Social.PreBuildTool.exe&quot; /date=2016-06-18 /projectPath=&quot;$(ProjectPath)&quot;" />
   </Target>
-  <Target Name="AfterBuild">
+
+  <Target Name="PostBuild" BeforeTargets="PostBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='net46|true'">
+    <Exec Command="&quot;$(SolutionDir)build\UpdateAssemblyInfoJson.exe&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
   </Target>
-  -->
+
 </Project>
