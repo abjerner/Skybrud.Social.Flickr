@@ -1,4 +1,4 @@
-﻿namespace Skybrud.Social.Flickr.Enums {
+﻿namespace Skybrud.Social.Flickr.Models.Photos {
     
     /// <summary>
     /// Enum class indicating the safety level of a photo.

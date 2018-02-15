@@ -2,7 +2,6 @@
 using System.Xml.Linq;
 using Skybrud.Essentials.Locations;
 using Skybrud.Essentials.Xml.Extensions;
-using Skybrud.Social.Flickr.Enums;
 
 namespace Skybrud.Social.Flickr.Models.Places {
     

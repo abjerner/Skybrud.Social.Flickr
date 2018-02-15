@@ -1,4 +1,4 @@
-﻿namespace Skybrud.Social.Flickr.Enums {
+﻿namespace Skybrud.Social.Flickr.Models.Places {
     
     /// <summary>
     /// Enum class indicating the mode of a tag based search.

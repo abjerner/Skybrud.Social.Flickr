@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using Skybrud.Social.Flickr.Enums;
+using Skybrud.Social.Flickr.Models.Places;
 using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Flickr.Options.Places;
 using Skybrud.Social.Http;

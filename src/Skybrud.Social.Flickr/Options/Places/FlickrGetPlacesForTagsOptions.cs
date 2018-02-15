@@ -2,7 +2,7 @@ using System;
 using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Strings;
 using Skybrud.Essentials.Time;
-using Skybrud.Social.Flickr.Enums;
+using Skybrud.Social.Flickr.Models.Places;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 

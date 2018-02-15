@@ -1,6 +1,7 @@
 using System;
 using Skybrud.Essentials.Common;
 using Skybrud.Social.Flickr.Enums;
+using Skybrud.Social.Flickr.Models.Photos;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
