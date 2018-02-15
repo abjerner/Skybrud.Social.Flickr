@@ -5,6 +5,9 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Flickr.Options.Photosets {
     
+    /// <summary>
+    /// Class representing the options for a request to get the photosets of a user.
+    /// </summary>
     public class FlickrGetPhotosetsOptions : IHttpGetOptions {
 
         #region Properties
@@ -28,12 +31,25 @@ namespace Skybrud.Social.Flickr.Options.Photosets {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public FlickrGetPhotosetsOptions() { }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
         public FlickrGetPhotosetsOptions(string userId) {
             UserId = userId;
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="page">The page to be returned.</param>
+        /// <param name="perPage">The maximum amount of photosets to be returned per page.</param>
         public FlickrGetPhotosetsOptions(string userId, int page, int perPage) {
             UserId = userId;
             Page = page;
@@ -44,6 +60,9 @@ namespace Skybrud.Social.Flickr.Options.Photosets {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpQueryString GetQueryString() {
             if (String.IsNullOrWhiteSpace(UserId)) throw new PropertyNotSetException("UserId");
             SocialHttpQueryString query = new SocialHttpQueryString();

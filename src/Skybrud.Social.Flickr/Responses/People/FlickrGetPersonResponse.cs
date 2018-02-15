@@ -1,35 +1,38 @@
-﻿using Skybrud.Social.Flickr.Objects.People;
+﻿using System;
+using Skybrud.Social.Flickr.Objects.People;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.People {
 
+    /// <summary>
+    /// Class representing the response of a request to the Flickr API for getting a person.
+    /// </summary>
     public class FlickrGetPersonResponse : FlickrResponse<FlickrGetPersonResponseBody> {
 
         #region Constructors
 
-        private FlickrGetPersonResponse(SocialHttpResponse response) : base(response) { }
+        private FlickrGetPersonResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseXmlElement(response.Body, FlickrGetPersonResponseBody.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="FlickrGetPersonResponse"/>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="FlickrGetPersonResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="FlickrGetPersonResponse"/>.</returns>
+        /// <returns>An instance of <see cref="FlickrGetPersonResponse"/>.</returns>
         public static FlickrGetPersonResponse ParseResponse(SocialHttpResponse response) {
-
-            if (response == null) return null;
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Initialize the response object
-            return new FlickrGetPersonResponse(response) {
-                Body = ParseXmlElement(response.Body, FlickrGetPersonResponseBody.Parse)
-            };
-
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new FlickrGetPersonResponse(response);
         }
 
         #endregion

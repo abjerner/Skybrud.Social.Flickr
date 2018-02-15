@@ -27,37 +27,37 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// <summary>
         /// Gets a reference to the raw galleries endpoint.
         /// </summary>
-        public FlickrGalleriesRawEndpoint Galleries { get; private set; }
+        public FlickrGalleriesRawEndpoint Galleries { get; }
 
         /// <summary>
         /// Gets a reference to the raw people endpoint.
         /// </summary>
-        public FlickrPeopleRawEndpoint People { get; private set; }
+        public FlickrPeopleRawEndpoint People { get; }
 
         /// <summary>
         /// Gets a reference to the raw photosets endpoint.
         /// </summary>
-        public FlickrPhotosetsRawEndpoint Photosets { get; private set; }
+        public FlickrPhotosetsRawEndpoint Photosets { get; }
 
         /// <summary>
         /// Gets a reference to the raw photos endpoint.
         /// </summary>
-        public FlickrPhotosRawEndpoint Photos { get; private set; }
+        public FlickrPhotosRawEndpoint Photos { get; }
 
         /// <summary>
         /// Gets a reference to the raw places endpoint.
         /// </summary>
-        public FlickrPlacesRawEndpoint Places { get; private set; }
+        public FlickrPlacesRawEndpoint Places { get; }
 
         /// <summary>
         /// Gets a reference to the raw test endpoint.
         /// </summary>
-        public FlickrTestRawEndpoint Test { get; private set; }
+        public FlickrTestRawEndpoint Test { get; }
 
         /// <summary>
         /// Gets a reference to the raw URLs endpoint.
         /// </summary>
-        public FlickrUrlsRawEndpoint Urls { get; private set; }
+        public FlickrUrlsRawEndpoint Urls { get; }
 
         #endregion
 
@@ -70,7 +70,7 @@ namespace Skybrud.Social.Flickr.OAuth {
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FlickrOAuthClient"/> class with the specified
-        /// <code>consumerKey</code> and <code>consumerSecret</code>.
+        /// <paramref name="consumerKey"/> and <paramref name="consumerSecret"/>.
         /// </summary>
         /// <param name="consumerKey">The comsumer key of your application.</param>
         /// <param name="consumerSecret">The consumer secret of your application.</param>
@@ -120,6 +120,12 @@ namespace Skybrud.Social.Flickr.OAuth {
 
         #endregion
 
+        /// <summary>
+        /// Gets a request token from the provider. After acquiring a request token, the user should be redirected
+        /// to the website of the provider for approving the application. If successful, the user will be redirected
+        /// back to the specified callback URL where you then can exchange the request token for an access token.
+        /// </summary>
+        /// <returns>An instance of <see cref="SocialOAuthRequestTokenResponse"/> representing the response.</returns>
         public override SocialOAuthRequestTokenResponse GetRequestToken() {
 
             // Flickr apparently deviates from the OAuth 1.0a specification, since they require the OAuth properties to
@@ -160,6 +166,12 @@ namespace Skybrud.Social.Flickr.OAuth {
 
         }
 
+        /// <summary>
+        /// Following the 3-legged authorization, you can exchange a request token for an access token
+        /// using this method. This is the third and final step of the authorization process.
+        /// </summary>
+        /// <param name="verifier">The verification key received after the user has accepted the app.</param>
+        /// <returns>An instance of <see cref="SocialOAuthAccessTokenResponse"/> representing the response.</returns>
         public override SocialOAuthAccessTokenResponse GetAccessToken(string verifier) {
 
             // Flickr apparently deviates from the OAuth 1.0a specification, since they require the OAuth properties to

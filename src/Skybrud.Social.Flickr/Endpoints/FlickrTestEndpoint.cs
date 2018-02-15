@@ -1,7 +1,10 @@
 ﻿using Skybrud.Social.Flickr.Endpoints.Raw;
 
 namespace Skybrud.Social.Flickr.Endpoints {
-    
+
+    /// <summary>
+    /// Class representing the implementation of the <strong>Test</strong> Flickr endpoint.
+    /// </summary>
     public class FlickrTestEndpoint {
 
         #region Properties
@@ -9,20 +12,18 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// <summary>
         /// Gets a reference to the Flickr service.
         /// </summary>
-        public FlickrService Service { get; private set; }
+        public FlickrService Service { get; }
         
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public FlickrTestRawEndpoint Raw {
-            get { return Service.Client.Test; }
-        }
+        public FlickrTestRawEndpoint Raw => Service.Client.Test;
 
         #endregion
 
         #region Constructors
 
-        public FlickrTestEndpoint(FlickrService service) {
+        internal FlickrTestEndpoint(FlickrService service) {
             Service = service;
         }
 

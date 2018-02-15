@@ -10,14 +10,17 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
 
         #region Properties
 
-        public FlickrPhotosetList Photosets { get; private set; }
+        /// <summary>
+        /// Gets a list of the photosets returned in the response.
+        /// </summary>
+        public FlickrPhotosetList Photosets { get; }
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrGetPhotosetListResponseBody(XElement xml) : base(xml) {
@@ -29,9 +32,10 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrGetPhotosetListResponseBody"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrGetPhotosetListResponseBody"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrGetPhotosetListResponseBody"/>.</returns>
         public static FlickrGetPhotosetListResponseBody Parse(XElement xml) {
             return xml == null ? null : new FlickrGetPhotosetListResponseBody(xml);
         }

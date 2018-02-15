@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using Skybrud.Social.Flickr.Enums;
 using Skybrud.Social.Flickr.OAuth;
-using Skybrud.Social.Flickr.Objects.Places;
 using Skybrud.Social.Flickr.Options.Places;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
     /// <summary>
-    /// Class representing the raw implementation of the places Flickr endpoint.
+    /// Class representing the raw implementation of the <strong>Places</strong> Flickr endpoint.
     /// </summary>
     public class FlickrPlacesRawEndpoint {
 
@@ -20,7 +17,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Flickr OAuth client.
         /// </summary>
-        public FlickrOAuthClient Client { get; private set; }
+        public FlickrOAuthClient Client { get; }
 
         #endregion
 
@@ -42,7 +39,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Return a list of places matching the specified <paramref name="query"/>.
         /// </summary>
         /// <param name="query">The query string to use for place ID lookups.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.find.htm</cref>
         /// </see>
@@ -55,7 +52,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Returns a place for the specified <paramref name="latitude"/> and <see cref="longitude"/>.
+        /// Returns a place for the specified <paramref name="latitude"/> and <paramref name="longitude"/>.
         /// 
         /// The flickr.places.findByLatLon method is not meant to be a (reverse) geocoder in the traditional sense. It
         /// is designed to allow users to find photos for "places" and will round up to the nearest place type to which
@@ -70,7 +67,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// will be truncated.</param>
         /// <param name="longitude">The longitude whose valid range is -180 to 180. Anything more than 4 decimal places
         /// will be truncated.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.htm</cref>
         /// </see>
@@ -79,7 +76,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Returns a place for the specified <paramref name="latitude"/> and <see cref="longitude"/>.
+        /// Returns a place for the specified <paramref name="latitude"/> and <paramref name="longitude"/>.
         /// 
         /// The flickr.places.findByLatLon method is not meant to be a (reverse) geocoder in the traditional sense. It
         /// is designed to allow users to find photos for "places" and will round up to the nearest place type to which
@@ -95,10 +92,10 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <param name="longitude">The longitude whose valid range is -180 to 180. Anything more than 4 decimal places
         /// will be truncated.</param>
         /// <param name="accurary">Recorded accuracy level of the location information. <strong>World</strong> level is
-        /// <code>1</code>, Country is <code>~3</code>, <strong>Region</strong> <code>~6</code>, <strong>City</strong>
-        /// <code>~11</code>, <strong>Street</strong> <code>~16</code>. Current range is <code>1</code>-<code>16</code>.
-        /// The default is <code>16</code>.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <c>1</c>, Country is <c>~3</c>, <strong>Region</strong> <c>~6</c>, <strong>City</strong>
+        /// <c>~11</c>, <strong>Street</strong> <c>~16</c>. Current range is <c>1</c>-<c>16</c>.
+        /// The default is <c>16</c>.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.htm</cref>
         /// </see>
@@ -121,7 +118,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         ///     <cref>https://www.flickr.com/services/api/flickr.places.getInfo.html</cref>
         /// </see>
         public SocialHttpResponse GetInfo(string placeId) {
-            if (String.IsNullOrWhiteSpace(placeId)) throw new ArgumentNullException("placeId");
+            if (String.IsNullOrWhiteSpace(placeId)) throw new ArgumentNullException(nameof(placeId));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.places.getInfo"},
                 {"place_id", placeId}
@@ -144,7 +141,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Gets a list of the top 100 unique places clustered by a given placetype for a user's contacts.
         /// </summary>
         /// <param name="placeType">A place type to cluster photos by. </param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         public SocialHttpResponse PlacesForContacts(FlickrPlaceType placeType) {
             return PlacesForContacts(new FlickrGetPlacesForContactsOptions {
                 PlaceType = placeType
@@ -168,9 +165,9 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Gets a list of the top 100 unique places clustered by a given placetype for a user's contacts.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         public SocialHttpResponse PlacesForContacts(FlickrGetPlacesForContactsOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }
         
@@ -182,7 +179,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         }
 
         public SocialHttpResponse GetPlacesForTags(FlickrGetPlacesForTagsOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }
         

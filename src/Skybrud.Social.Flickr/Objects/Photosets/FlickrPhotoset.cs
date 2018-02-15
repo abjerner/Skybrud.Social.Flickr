@@ -5,6 +5,9 @@ using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.Photosets {
     
+    /// <summary>
+    /// Class representing a photoset.
+    /// </summary>
     public class FlickrPhotoset : FlickrObject {
 
         #region Properties
@@ -12,68 +15,64 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
         /// <summary>
         /// Gets the ID of the photo.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; }
 
-        public string Owner { get; private set; }
+        public string Owner { get; }
 
-        public string Username { get; private set; }
+        public string Username { get; }
 
-        public string Primary { get; private set; }
+        public string Primary { get; }
 
-        public string Secret { get; private set; }
+        public string Secret { get; }
 
-        public string Server { get; private set; }
+        public string Server { get; }
 
-        public string Farm { get; private set; }
+        public string Farm { get; }
 
-        public int Photos { get; private set; }
+        public int Photos { get; }
 
-        public int Views { get; private set; }
+        public int Views { get; }
 
-        public int Comments { get; private set; }
+        public int Comments { get; }
 
-        public int Videos { get; private set; }
+        public int Videos { get; }
 
-        public bool CanComment { get; private set; }
+        public bool CanComment { get; }
 
-        public EssentialsDateTime Created { get; private set; }
+        public EssentialsDateTime Created { get; }
 
-        public EssentialsDateTime Updated { get; private set; }
+        public EssentialsDateTime Updated { get; }
 
-        public string CoverPhotoServer { get; private set; }
+        public string CoverPhotoServer { get; }
 
-        public string CoverPhotoFarm { get; private set; }
+        public string CoverPhotoFarm { get; }
 
         /// <summary>
         /// Gets the title of the photoset.
         /// </summary>
-        public string Title { get; private set; }
+        public string Title { get; }
 
         /// <summary>
         /// Gets whether the photoset has a title.
         /// </summary>
-        public bool HasTitle {
-            get { return !String.IsNullOrWhiteSpace(Title); }
-        }
+        public bool HasTitle => !String.IsNullOrWhiteSpace(Title);
 
         /// <summary>
         /// Gets the description of the photoset.
         /// </summary>
-        public string Description { get; private set; }
+        public string Description { get; }
 
         /// <summary>
         /// Gets whether the photoset has a description.
         /// </summary>
-        public bool HasDescription {
-            get { return !String.IsNullOrWhiteSpace(Description); }
-        }
+        public bool HasDescription => !String.IsNullOrWhiteSpace(Description);
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPhotoset(XElement xml) : base(xml) {
@@ -107,9 +106,10 @@ namespace Skybrud.Social.Flickr.Objects.Photosets {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrPhotoset"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrPhotoset"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPhotoset"/>.</returns>
         public static FlickrPhotoset Parse(XElement xml) {
             return xml == null ? null : new FlickrPhotoset(xml);
         }

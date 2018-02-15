@@ -1,4 +1,5 @@
-﻿using Skybrud.Social.Flickr.Objects.Photos;
+﻿using System;
+using Skybrud.Social.Flickr.Objects.Photos;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Photos {
@@ -10,29 +11,28 @@ namespace Skybrud.Social.Flickr.Responses.Photos {
 
         #region Constructors
 
-        private FlickrGetPhotoInfoResponse(SocialHttpResponse response) : base(response) { }
+        private FlickrGetPhotoInfoResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseXmlElement(response.Body, FlickrGetPhotoResponseBody.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="FlickrGetPhotoInfoResponse"/>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="FlickrGetPhotoInfoResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="FlickrGetPhotoInfoResponse"/>.</returns>
+        /// <returns>An instance of <see cref="FlickrGetPhotoInfoResponse"/>.</returns>
         public static FlickrGetPhotoInfoResponse ParseResponse(SocialHttpResponse response) {
-
-            if (response == null) return null;
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Initialize the response object
-            return new FlickrGetPhotoInfoResponse(response) {
-                Body = ParseXmlElement(response.Body, FlickrGetPhotoResponseBody.Parse)
-            };
-
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new FlickrGetPhotoInfoResponse(response);
         }
 
         #endregion

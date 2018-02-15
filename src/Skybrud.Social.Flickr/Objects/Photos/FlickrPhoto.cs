@@ -8,6 +8,9 @@ using Skybrud.Social.Flickr.Objects.Places;
 
 namespace Skybrud.Social.Flickr.Objects.Photos {
     
+    /// <summary>
+    /// Class representing a Flickr photo.
+    /// </summary>
     public class FlickrPhoto : FlickrObject {
 
         #region Properties
@@ -15,102 +18,96 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
         /// <summary>
         /// Gets the ID of the photo.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; }
 
-        public string Secret { get; private set; }
+        public string Secret { get; }
 
-        public string Server { get; private set; }
+        public string Server { get; }
 
-        public string Farm { get; private set; }
+        public string Farm { get; }
 
         /// <summary>
         /// Gets the timestamp for when the photo was uploaded.
         /// </summary>
-        public EssentialsDateTime Uploaded { get; private set; }
+        public EssentialsDateTime Uploaded { get; }
 
         /// <summary>
         /// Gets whether the authenticated user has favorited the photo.
         /// </summary>
-        public bool IsFavorite { get; private set; }
+        public bool IsFavorite { get; }
 
         /// <summary>
         /// Gets the ID of the license of the photo.
         /// </summary>
-        public int LicenseId { get; private set; }
+        public int LicenseId { get; }
 
         /// <summary>
         /// Gets the safety level of the photo.
         /// </summary>
-        public FlickrPhotoSafetyLevel SafetyLevel { get; private set; }
+        public FlickrPhotoSafetyLevel SafetyLevel { get; }
 
         // TODO: Implement property for attribute "rotation"
 
-        public string OriginalSecret { get; private set; }
+        public string OriginalSecret { get; }
 
-        public string OriginalFormat { get; private set; }
+        public string OriginalFormat { get; }
 
         /// <summary>
         /// Gets the amount of views the photo has received.
         /// </summary>
-        public int Views { get; private set; }
+        public int Views { get; }
 
         // TODO: Implement property for attribute "media"
 
         /// <summary>
         /// Gets a reference to the owner of the photo.
         /// </summary>
-        public FlickrPhotoOwner Owner { get; private set; }
+        public FlickrPhotoOwner Owner { get; }
 
         /// <summary>
         /// Gets the title of the photo.
         /// </summary>
-        public string Title { get; private set; }
+        public string Title { get; }
 
         /// <summary>
         /// Gets whether the photo has a title.
         /// </summary>
-        public bool HasTitle {
-            get { return !String.IsNullOrWhiteSpace(Title); }
-        }
+        public bool HasTitle => !String.IsNullOrWhiteSpace(Title);
 
         /// <summary>
         /// Gets the description of the photo.
         /// </summary>
-        public string Description { get; private set; }
+        public string Description { get; }
 
         /// <summary>
         /// Gets whether the photo has a description.
         /// </summary>
-        public bool HasDescription {
-            get { return !String.IsNullOrWhiteSpace(Description); }
-        }
+        public bool HasDescription => !String.IsNullOrWhiteSpace(Description);
 
-        public FlickrPhotoSafetyVisibility Visibility { get; private set; }
+        public FlickrPhotoSafetyVisibility Visibility { get; }
         
         /// <summary>
         /// Gets a reference to the <see cref="FlickrPlace"/> representing the location of the photo. Use
         /// <see cref="HasLocation"/> to check whether a location has been specified for the photo.
         /// </summary>
-        public FlickrPlace Location { get; private set; }
+        public FlickrPlace Location { get; }
 
         /// <summary>
         /// Gets whether a location has been specified for the photo.
         /// </summary>
-        public bool HasLocation {
-            get { return Location != null; }
-        }
+        public bool HasLocation => Location != null;
 
         /// <summary>
         /// Gets a reference to the <see cref="FlickrPhotoUrls"/> with URLs of the photo.
         /// </summary>
-        public FlickrPhotoUrls Urls { get; private set; }
+        public FlickrPhotoUrls Urls { get; }
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPhoto(XElement xml) : base(xml) {
@@ -147,12 +144,12 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
         /// API doesn't use consitent integer values for the safety level across the API, hence the need for this
         /// method.
         /// 
-        /// When receiving information about a photo, <code>0</code> equals <see cref="FlickrPhotoSafetyLevel.Safe"/>,
-        /// <code>1</code> equals <see cref="FlickrPhotoSafetyLevel.Moderate"/> and <code>2</code> equals
+        /// When receiving information about a photo, <c>0</c> equals <see cref="FlickrPhotoSafetyLevel.Safe"/>,
+        /// <code>1</code> equals <see cref="FlickrPhotoSafetyLevel.Moderate"/> and <c>2</c> equals
         /// <see cref="FlickrPhotoSafetyLevel.Restricted"/>.
         /// 
-        /// On the other hand, when uploading a photo, <code>1</code> equals <see cref="FlickrPhotoSafetyLevel.Safe"/>,
-        /// <code>2</code> equals <see cref="FlickrPhotoSafetyLevel.Moderate"/> and <code>3</code> equals
+        /// On the other hand, when uploading a photo, <c>1</c> equals <see cref="FlickrPhotoSafetyLevel.Safe"/>,
+        /// <c>2</c> equals <see cref="FlickrPhotoSafetyLevel.Moderate"/> and <code>3</code> equals
         /// <see cref="FlickrPhotoSafetyLevel.Restricted"/>.
         /// </summary>
         /// <param name="value">The integer value to be parsed.</param>
@@ -186,9 +183,10 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrPhoto"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrPhoto"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPhoto"/>.</returns>
         public static FlickrPhoto Parse(XElement xml) {
             return xml == null ? null : new FlickrPhoto(xml);
         }

@@ -38,6 +38,7 @@ namespace Skybrud.Social.Flickr.Objects.People {
         /// Gets an instance of <see cref="FlickrUser"/> from the specified <code>xml</code>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrGetPhotosetInfoResponseBody"/>.</returns>
         public static FlickrUser Parse(XElement xml) {
             return xml == null ? null : new FlickrUser(xml);
         }

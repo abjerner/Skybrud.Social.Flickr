@@ -1,7 +1,10 @@
 ﻿using Skybrud.Social.Flickr.Endpoints.Raw;
 
 namespace Skybrud.Social.Flickr.Endpoints {
-    
+
+    /// <summary>
+    /// Class representing the implementation of the <strong>Galleries</strong> Flickr endpoint.
+    /// </summary>
     public class FlickrGalleriesEndpoint {
 
         #region Properties
@@ -9,20 +12,18 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// <summary>
         /// Gets a reference to the Flickr service.
         /// </summary>
-        public FlickrService Service { get; private set; }
+        public FlickrService Service { get; }
         
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public FlickrGalleriesRawEndpoint Raw {
-            get { return Service.Client.Galleries; }
-        }
+        public FlickrGalleriesRawEndpoint Raw => Service.Client.Galleries;
 
         #endregion
 
         #region Constructors
 
-        public FlickrGalleriesEndpoint(FlickrService service) {
+        internal FlickrGalleriesEndpoint(FlickrService service) {
             Service = service;
         }
 

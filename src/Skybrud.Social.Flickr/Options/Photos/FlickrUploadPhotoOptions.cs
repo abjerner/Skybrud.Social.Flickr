@@ -6,6 +6,9 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Flickr.Options.Photos {
     
+    /// <summary>
+    /// Class representing the options for uploading a photo.
+    /// </summary>
     public class FlickrUploadPhotoOptions : IHttpPostOptions {
 
         #region Properties
@@ -69,6 +72,9 @@ namespace Skybrud.Social.Flickr.Options.Photos {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public FlickrUploadPhotoOptions() {
             IsPublic = true;
         }
@@ -77,10 +83,16 @@ namespace Skybrud.Social.Flickr.Options.Photos {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpQueryString GetQueryString() {
             return new SocialHttpQueryString();
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpPostData"/> representing the POST parameters.
+        /// </summary>
         public IHttpPostData GetPostData() {
 
             // Check wether a photo was specified

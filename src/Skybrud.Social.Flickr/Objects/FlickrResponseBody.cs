@@ -10,14 +10,17 @@ namespace Skybrud.Social.Flickr.Objects {
 
         #region Properties
 
-        public string Status { get; private set; }
+        /// <summary>
+        /// Gets the status of the response.
+        /// </summary>
+        public string Status { get; }
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrResponseBody(XElement xml) : base(xml) {

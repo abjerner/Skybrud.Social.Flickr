@@ -4,7 +4,7 @@ using Skybrud.Essentials.Xml.Extensions;
 namespace Skybrud.Social.Flickr.Objects.Places {
     
     /// <summary>
-    /// Class representing the response body as returned by the <code>flickr.places.findByLatLon</code> API method.
+    /// Class representing the response body as returned by the <c>flickr.places.findByLatLon</c> API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.html</cref>
@@ -15,9 +15,9 @@ namespace Skybrud.Social.Flickr.Objects.Places {
 
         /// <summary>
         /// Gets a reference to a collection of the places matching the latitude and longitude as specified in the
-        /// request to the <code>flickr.places.findByLatLon</code> API method.
+        /// request to the <c>flickr.places.findByLatLon</c> API method.
         /// </summary>
-        public FlickrPlacesFindByLatLonCollection Places { get; private set; }
+        public FlickrPlacesFindByLatLonCollection Places { get; }
 
         #endregion
 
@@ -40,6 +40,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPlacesFindByLatLonResponseBody"/>.</returns>
         public static FlickrPlacesFindByLatLonResponseBody Parse(XElement xml) {
             return xml == null ? null : new FlickrPlacesFindByLatLonResponseBody(xml);
         }

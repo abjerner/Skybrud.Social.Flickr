@@ -3,6 +3,9 @@ using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Objects.People {
     
+    /// <summary>
+    /// Class representing a Flickr person.
+    /// </summary>
     public class FlickrPerson : FlickrObject {
 
         #region Properties
@@ -32,7 +35,7 @@ namespace Skybrud.Social.Flickr.Objects.People {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPerson(XElement xml) : base(xml) {
@@ -47,9 +50,10 @@ namespace Skybrud.Social.Flickr.Objects.People {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrPerson"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrPerson"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPerson"/>.</returns>
         public static FlickrPerson Parse(XElement xml) {
             return xml == null ? null : new FlickrPerson(xml);
         }

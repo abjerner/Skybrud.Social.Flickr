@@ -4,7 +4,7 @@ using Skybrud.Social.Flickr.Responses.Places;
 namespace Skybrud.Social.Flickr.Endpoints {
 
     /// <summary>
-    /// Class representing the implementation of the places Flickr endpoint.
+    /// Class representing the implementation of the <strong>Places</strong> Flickr endpoint.
     /// </summary>
     public class FlickrPlacesEndpoint {
 
@@ -13,14 +13,12 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// <summary>
         /// Gets a reference to the Flickr service.
         /// </summary>
-        public FlickrService Service { get; private set; }
+        public FlickrService Service { get; }
         
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public FlickrPlacesRawEndpoint Raw {
-            get { return Service.Client.Places; }
-        }
+        public FlickrPlacesRawEndpoint Raw => Service.Client.Places;
 
         #endregion
 
@@ -42,7 +40,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// Gets information about the place with the specified <paramref name="placeId"/>.
         /// </summary>
         /// <param name="placeId">The ID of the place to fetch information about.</param>
-        /// <returns>Returns an instance of <see cref="FlickrPlacesGetInfoResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="FlickrPlacesGetInfoResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.getInfo.html</cref>
         /// </see>
@@ -54,7 +52,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// Return a list of places matching the specified <paramref name="query"/>.
         /// </summary>
         /// <param name="query">The query string to use for place ID lookups.</param>
-        /// <returns>Returns an instance of <see cref="FlickrPlacesFindResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="FlickrPlacesFindResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.find.htm</cref>
         /// </see>
@@ -63,7 +61,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         }
 
         /// <summary>
-        /// Returns a place for the specified <paramref name="latitude"/> and <see cref="longitude"/>.
+        /// Returns a place for the specified <paramref name="latitude"/> and <paramref name="longitude"/>.
         /// 
         /// The flickr.places.findByLatLon method is not meant to be a (reverse) geocoder in the traditional sense. It
         /// is designed to allow users to find photos for "places" and will round up to the nearest place type to which
@@ -78,7 +76,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// will be truncated.</param>
         /// <param name="longitude">The longitude whose valid range is -180 to 180. Anything more than 4 decimal places
         /// will be truncated.</param>
-        /// <returns>Returns an instance of <see cref="FlickrPlacesFindByLatLonResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="FlickrPlacesFindByLatLonResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.htm</cref>
         /// </see>
@@ -87,7 +85,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         }
 
         /// <summary>
-        /// Returns a place for the specified <paramref name="latitude"/> and <see cref="longitude"/>.
+        /// Returns a place for the specified <paramref name="latitude"/> and <paramref name="longitude"/>.
         /// 
         /// The flickr.places.findByLatLon method is not meant to be a (reverse) geocoder in the traditional sense. It
         /// is designed to allow users to find photos for "places" and will round up to the nearest place type to which
@@ -103,10 +101,10 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// <param name="longitude">The longitude whose valid range is -180 to 180. Anything more than 4 decimal places
         /// will be truncated.</param>
         /// <param name="accurary">Recorded accuracy level of the location information. <strong>World</strong> level is
-        /// <code>1</code>, Country is <code>~3</code>, <strong>Region</strong> <code>~6</code>, <strong>City</strong>
-        /// <code>~11</code>, <strong>Street</strong> <code>~16</code>. Current range is <code>1</code>-<code>16</code>.
-        /// The default is <code>16</code>.</param>
-        /// <returns>Returns an instance of <see cref="FlickrPlacesFindByLatLonResponse"/> representing the response.</returns>
+        /// <c>1</c>, Country is <c>~3</c>, <strong>Region</strong> <c>~6</c>, <c>City</c>
+        /// <c>~11</c>, <strong>Street</strong> <c>~16</c>. Current range is <c>1</c>-<c>16</c>.
+        /// The default is <c>16</c>.</param>
+        /// <returns>An instance of <see cref="FlickrPlacesFindByLatLonResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.htm</cref>
         /// </see>

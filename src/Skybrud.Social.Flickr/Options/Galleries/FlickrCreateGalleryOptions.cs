@@ -6,7 +6,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Flickr.Options.Galleries {
 
     /// <summary>
-    /// Class representing the options for a call to the <code>flickr.galleries.create</code> Flickr API method.
+    /// Class representing the options for a call to the <c>flickr.galleries.create</c> Flickr API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.galleries.create.html</cref>
@@ -55,12 +55,18 @@ namespace Skybrud.Social.Flickr.Options.Galleries {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString query = new SocialHttpQueryString();
             query.Add("method", "flickr.galleries.create");
             return query;
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpPostData GetPostData() {
 
             // Both "Title" or "Description" should be specified

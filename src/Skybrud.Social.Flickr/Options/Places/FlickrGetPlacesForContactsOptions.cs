@@ -8,7 +8,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Flickr.Options.Places {
 
     /// <summary>
-    /// Class representing the options for a call to the <code>flickr.places.placesForContacts</code> Flickr API
+    /// Class representing the options for a call to the <c>flickr.places.placesForContacts</c> Flickr API
     /// method.
     /// </summary>
     /// <see>
@@ -26,14 +26,14 @@ namespace Skybrud.Social.Flickr.Options.Places {
         /// <summary>
         /// Optional: Gets or sets a Where on Earth identifier to use to filter photo clusters. For example all the
         /// photos clustered by <see cref="FlickrPlaceType.Locality"/> in the United States
-        /// (WOE ID <code>23424977</code>).
+        /// (WOE ID <c>23424977</c>).
         /// </summary>
         public string WoeId { get; set; }
 
         /// <summary>
         /// Gets or sets a Flickr Places identifier to use to filter photo clusters. For example all the photos
         /// clustered by <see cref="FlickrPlaceType.Locality"/> in the United States
-        /// (Place ID <code>4KO02SibApitvSBieQ</code>).
+        /// (Place ID <c>4KO02SibApitvSBieQ</c>).
         /// </summary>
         public string PlaceId { get; set; }
 
@@ -81,6 +81,9 @@ namespace Skybrud.Social.Flickr.Options.Places {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpQueryString GetQueryString() {
 
             // The place type must be specified

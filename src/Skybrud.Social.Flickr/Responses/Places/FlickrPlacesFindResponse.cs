@@ -1,10 +1,11 @@
-﻿using Skybrud.Social.Flickr.Objects.Places;
+﻿using System;
+using Skybrud.Social.Flickr.Objects.Places;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Places {
     
     /// <summary>
-    /// Class representing a response from the <code>flickr.places.find</code> Flickr API method.
+    /// Class representing a response from the <c>flickr.places.find</c> Flickr API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.places.find.html</cref>
@@ -35,9 +36,10 @@ namespace Skybrud.Social.Flickr.Responses.Places {
         /// Parses the specified <paramref name="response"/> into an instance of <see cref="FlickrPlacesFindResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="FlickrPlacesFindResponse"/>.</returns>
+        /// <returns>An instance of <see cref="FlickrPlacesFindResponse"/>.</returns>
         public static FlickrPlacesFindResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new FlickrPlacesFindResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new FlickrPlacesFindResponse(response);
         }
 
         #endregion

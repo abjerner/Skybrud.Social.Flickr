@@ -17,7 +17,7 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPhotoUrls(XElement xml) : base(xml) {
@@ -29,9 +29,10 @@ namespace Skybrud.Social.Flickr.Objects.Photos {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="FlickrPhotoUrls"/> from the specified <code>xml</code>.
+        /// Gets an instance of <see cref="FlickrPhotoUrls"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPhotoUrls"/>.</returns>
         public static FlickrPhotoUrls Parse(XElement xml) {
             return xml == null ? null : new FlickrPhotoUrls(xml);
         }

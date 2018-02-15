@@ -11,7 +11,7 @@ namespace Skybrud.Social.Flickr.Objects {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>xml</code>.
+        /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrObject(XElement xml) : base(xml) { }

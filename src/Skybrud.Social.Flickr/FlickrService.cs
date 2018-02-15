@@ -5,6 +5,9 @@ using Skybrud.Social.OAuth;
 
 namespace Skybrud.Social.Flickr {
 
+    /// <summary>
+    /// Class working as an entry point to the Flickr API.
+    /// </summary>
     public class FlickrService {
 
         #region Properties
@@ -12,42 +15,42 @@ namespace Skybrud.Social.Flickr {
         /// <summary>
         /// Gets a reference to the OAuth client used for communicating with the Flickr API.
         /// </summary>
-        public FlickrOAuthClient Client { get; private set; }
+        public FlickrOAuthClient Client { get; }
 
         /// <summary>
         /// Gets a reference to the galleries endpoint.
         /// </summary>
-        public FlickrGalleriesEndpoint Galleries { get; private set; }
+        public FlickrGalleriesEndpoint Galleries { get; }
 
         /// <summary>
         /// Gets a reference to the people endpoint.
         /// </summary>
-        public FlickrPeopleEndpoint People { get; private set; }
+        public FlickrPeopleEndpoint People { get; }
 
         /// <summary>
         /// Gets a reference to the photosets endpoint.
         /// </summary>
-        public FlickrPhotosetsEndpoint Photosets { get; private set; }
+        public FlickrPhotosetsEndpoint Photosets { get; }
 
         /// <summary>
         /// Gets a reference to the photos endpoint.
         /// </summary>
-        public FlickrPhotosEndpoint Photos { get; private set; }
+        public FlickrPhotosEndpoint Photos { get; }
 
         /// <summary>
         /// Gets a reference to the places endpoint.
         /// </summary>
-        public FlickrPlacesEndpoint Places { get; private set; }
+        public FlickrPlacesEndpoint Places { get; }
 
         /// <summary>
         /// Gets a reference to the test endpoint.
         /// </summary>
-        public FlickrTestEndpoint Test { get; private set; }
+        public FlickrTestEndpoint Test { get; }
 
         /// <summary>
         /// Gets a reference to the URLs endpoint.
         /// </summary>
-        public FlickrUrlsEndpoint Urls { get; private set; }
+        public FlickrUrlsEndpoint Urls { get; }
 
         #endregion
 
@@ -74,11 +77,12 @@ namespace Skybrud.Social.Flickr {
         #region Static methods
 
         /// <summary>
-        /// Initializes a service instance based on the specified <code>consumerKey</code> and
-        /// <code>consumerSecret</code>. This will create an API reference without a user context.
+        /// Initializes a service instance based on the specified <paramref name="consumerKey"/> and
+        /// <paramref name="consumerSecret"/>. This will create an API reference without a user context.
         /// </summary>
         /// <param name="consumerKey">The consumer key of your Flickr app.</param>
         /// <param name="consumerSecret">The consumer secret Flickr app.</param>
+        /// <returns>An instance of <see cref="FlickrService"/>.</returns>
         public static FlickrService CreateFromConsumerKey(string consumerKey, string consumerSecret) {
 
             // Initialize a new OAuth client
@@ -90,14 +94,15 @@ namespace Skybrud.Social.Flickr {
         }
 
         /// <summary>
-        /// Initializes a service instance based on the specified <code>consumerKey</code> and
-        /// <code>consumerSecret</code> as well as the <code>accessToken</code> and <code>accessTokenSecret</code>
-        /// of the authenticated user.
+        /// Initializes a service instance based on the specified <paramref name="consumerKey"/> and
+        /// <paramref name="consumerSecret"/> as well as the <paramref name="accessToken"/> and
+        /// <paramref name="accessTokenSecret"/> of the authenticated user.
         /// </summary>
         /// <param name="consumerKey">The consumer key of your Flickr app.</param>
         /// <param name="consumerSecret">The consumer secret Flickr app.</param>
         /// <param name="accessToken">The access token of the authenticated user.</param>
         /// <param name="accessTokenSecret">The acess token secret of the authenticated user.</param>
+        /// <returns>An instance of <see cref="FlickrService"/>.</returns>
         public static FlickrService CreateFromAccessToken(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret) {
 
             // Initialize a new OAuth client
@@ -109,11 +114,12 @@ namespace Skybrud.Social.Flickr {
         }
 
         /// <summary>
-        /// Initialize a service reference based on the specified OAuth client.
+        /// Initialize a service reference based on the specified OAuth <paramref name="client"/>.
         /// </summary>
         /// <param name="client">The OAuth client.</param>
+        /// <returns>An instance of <see cref="FlickrService"/>.</returns>
         public static FlickrService CreateFromOAuthClient(SocialOAuthClient client) {
-            if (client == null) throw new ArgumentNullException("client");
+            if (client == null) throw new ArgumentNullException(nameof(client));
             return CreateFromAccessToken(client.ConsumerKey, client.ConsumerSecret, client.Token, client.TokenSecret);
         }
 

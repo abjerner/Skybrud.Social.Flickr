@@ -13,14 +13,12 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// <summary>
         /// Gets a reference to the Flickr service.
         /// </summary>
-        public FlickrService Service { get; private set; }
+        public FlickrService Service { get; }
         
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public FlickrUrlsRawEndpoint Raw {
-            get { return Service.Client.Urls; }
-        }
+        public FlickrUrlsRawEndpoint Raw => Service.Client.Urls;
 
         #endregion
 
@@ -42,7 +40,7 @@ namespace Skybrud.Social.Flickr.Endpoints {
         /// Return the Flickr ID of the user matching the specified <paramref name="url"/>.
         /// </summary>
         /// <param name="url">The photos or profile URL of the user.</param>
-        /// <returns>Returns an instance of <see cref="FlickrUrlsLookupUserResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="FlickrUrlsLookupUserResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.urls.lookupUser.html</cref>
         /// </see>

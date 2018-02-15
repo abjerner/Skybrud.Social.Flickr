@@ -15,118 +15,108 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// <summary>
         /// Gets the ID of the place.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets <strong>Where On Earth (WOE)</strong> ID of the place.
         /// </summary>
-        public string WoeId { get; private set; }
+        public string WoeId { get; }
 
         /// <summary>
         /// Gets the latitude of the place.
         /// </summary>
-        public double Latitude { get; private set; }
+        public double Latitude { get; }
 
         /// <summary>
         /// Gets the longitude of the place.
         /// </summary>
-        public double Longitude { get; private set; }
+        public double Longitude { get; }
 
         /// <summary>
         /// Gets the internal Flickr URL of the place.
         /// </summary>
-        public string PlaceUrl { get; private set; }
+        public string PlaceUrl { get; }
 
         /// <summary>
         /// Gets the type of the place.
         /// </summary>
-        public FlickrPlaceType PlaceType { get; private set; }
+        public FlickrPlaceType PlaceType { get; }
 
         /// <summary>
         /// Gets the ID of the type of the place.
         /// </summary>
-        public int PlaceTypeId { get; private set; }
+        public int PlaceTypeId { get; }
 
         /// <summary>
-        /// Gets the name of the timezone of the place - eg. <code>Europe/London</code> or
-        /// <code>Europe/Copenhagen</code>.
+        /// Gets the name of the timezone of the place - eg. <c>Europe/London</c> or
+        /// <c>Europe/Copenhagen</c>.
         /// </summary>
-        public string Timezone { get; private set; }
+        public string Timezone { get; }
 
         /// <summary>
         /// Gets the name of the place.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the name of the <strong>Where On Earth (WOE)</strong> of the place.
         /// </summary>
-        public string WoeName { get; private set; }
+        public string WoeName { get; }
 
         /// <summary>
         /// Gets whether any shape data is available for the place.
         /// </summary>
-        public bool HasShapeData { get; private set; }
+        public bool HasShapeData { get; }
 
         /// <summary>
         /// Gets a reference to the neighbourhood of the place.
         /// </summary>
-        public FlickrPlaceItem Neighbourhood { get; private set; }
+        public FlickrPlaceItem Neighbourhood { get; }
 
         /// <summary>
         /// Gets whether a neighbourhood has been specified for the place.
         /// </summary>
-        public bool HasNeighbourhood {
-            get { return Neighbourhood != null; }
-        }
+        public bool HasNeighbourhood => Neighbourhood != null;
 
         /// <summary>
         /// Gets a reference to the locality of the place.
         /// </summary>
-        public FlickrPlaceItem Locality { get; private set; }
+        public FlickrPlaceItem Locality { get; }
 
         /// <summary>
         /// Gets whether a locality has been specified for the place.
         /// </summary>
-        public bool HasLocality {
-            get { return Locality != null; }
-        }
+        public bool HasLocality => Locality != null;
 
         /// <summary>
         /// Gets a reference to the county of the place.
         /// </summary>
-        public FlickrPlaceItem County { get; private set; }
+        public FlickrPlaceItem County { get; }
 
         /// <summary>
         /// Gets whether a county has been specified for the place.
         /// </summary>
-        public bool HasCounty {
-            get { return County != null; }
-        }
+        public bool HasCounty => County != null;
 
         /// <summary>
         /// Gets a reference to the region of the place.
         /// </summary>
-        public FlickrPlaceItem Region { get; private set; }
+        public FlickrPlaceItem Region { get; }
 
         /// <summary>
         /// Gets whether a region has been specified for the place.
         /// </summary>
-        public bool HasRegion {
-            get { return Region != null; }
-        }
+        public bool HasRegion => Region != null;
 
         /// <summary>
         /// Gets a reference to the country of the place.
         /// </summary>
-        public FlickrPlaceItem Country { get; private set; }
+        public FlickrPlaceItem Country { get; }
 
         /// <summary>
         /// Gets whether a country has been specified for the place.
         /// </summary>
-        public bool HasCountry {
-            get { return Country != null; }
-        }
+        public bool HasCountry => Country != null;
 
         #endregion
 
@@ -168,6 +158,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// Gets an instance of <see cref="FlickrPlace"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPlace"/>.</returns>
         public static FlickrPlace Parse(XElement xml) {
             return xml == null ? null : new FlickrPlace(xml);
         }

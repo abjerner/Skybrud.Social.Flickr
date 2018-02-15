@@ -1,5 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.Net;
+﻿using System.Net;
 using System.Xml.Linq;
 using Skybrud.Social.Flickr.Exceptions;
 using Skybrud.Social.Http;
@@ -25,7 +24,7 @@ namespace Skybrud.Social.Flickr.Responses {
         #region Static methods
 
         /// <summary>
-        /// Validates the specified <see cref="response"/>.
+        /// Validates the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
         public static void ValidateResponse(SocialHttpResponse response) {
@@ -41,6 +40,10 @@ namespace Skybrud.Social.Flickr.Responses {
         
         }
 
+        /// <summary>
+        /// Validates the specified <paramref name="response"/>.
+        /// </summary>
+        /// <param name="response">The response to be validated.</param>
         public static void ValidateXmlResponse(SocialHttpResponse response) {
 
             // Parse the XML

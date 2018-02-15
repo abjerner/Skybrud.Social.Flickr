@@ -15,7 +15,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Flickr OAuth client.
         /// </summary>
-        public FlickrOAuthClient Client { get; private set; }
+        public FlickrOAuthClient Client { get; }
 
         #endregion
 
@@ -37,12 +37,12 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Return the Flickr ID of the user matching the specified <paramref name="url"/>.
         /// </summary>
         /// <param name="url">The photos or profile URL of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.urls.lookupUser.html</cref>
         /// </see>
         public SocialHttpResponse LookupUser(string url) {
-            if (String.IsNullOrWhiteSpace(url)) throw new ArgumentNullException("url");
+            if (String.IsNullOrWhiteSpace(url)) throw new ArgumentNullException(nameof(url));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.urls.lookupUser"},
                 {"url", url}

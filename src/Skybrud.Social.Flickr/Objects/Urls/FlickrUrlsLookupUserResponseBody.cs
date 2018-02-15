@@ -5,7 +5,7 @@ using Skybrud.Social.Flickr.Objects.People;
 namespace Skybrud.Social.Flickr.Objects.Urls {
 
     /// <summary>
-    /// Class representing the response body as returned by the <code>flickr.urls.lookupUser</code> API method.
+    /// Class representing the response body as returned by the <c>flickr.urls.lookupUser</c> API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.urls.lookupUser.html</cref>
@@ -17,7 +17,7 @@ namespace Skybrud.Social.Flickr.Objects.Urls {
         /// <summary>
         /// Gets a reference to an instance of <see cref="FlickrUser"/> with information about the user.
         /// </summary>
-        public FlickrUser User { get; private set; }
+        public FlickrUser User { get; }
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace Skybrud.Social.Flickr.Objects.Urls {
         /// Gets an instance of <see cref="FlickrUrlsLookupUserResponseBody"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
-        /// <returns>Returns an instance of <see cref="FlickrUrlsLookupUserResponseBody"/>.</returns>
+        /// <returns>An instance of <see cref="FlickrUrlsLookupUserResponseBody"/>.</returns>
         public static FlickrUrlsLookupUserResponseBody Parse(XElement xml) {
             return xml == null ? null : new FlickrUrlsLookupUserResponseBody(xml);
         }

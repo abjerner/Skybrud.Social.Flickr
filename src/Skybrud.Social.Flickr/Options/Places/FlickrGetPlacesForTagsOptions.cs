@@ -9,7 +9,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Flickr.Options.Places {
     
     /// <summary>
-    /// Class representing the options for a call to the <code>flickr.places.placesForTags</code> Flickr API method.
+    /// Class representing the options for a call to the <c>flickr.places.placesForTags</c> Flickr API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.places.placesForTags.html</cref>
@@ -81,6 +81,9 @@ namespace Skybrud.Social.Flickr.Options.Places {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpQueryString GetQueryString() {
 
             // The place type must be specified

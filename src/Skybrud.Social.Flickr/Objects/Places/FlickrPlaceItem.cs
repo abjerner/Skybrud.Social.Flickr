@@ -16,32 +16,32 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// <summary>
         /// Gets the ID of the place.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets Where On Earth (WOE) ID of the place.
         /// </summary>
-        public string WoeId { get; private set; }
+        public string WoeId { get; }
 
         /// <summary>
         /// Gets the latitude of the place.
         /// </summary>
-        public double Latitude { get; private set; }
+        public double Latitude { get; }
 
         /// <summary>
         /// Gets the longitude of the place.
         /// </summary>
-        public double Longitude { get; private set; }
+        public double Longitude { get; }
 
         /// <summary>
         /// Gets the Flickr URL of the place.
         /// </summary>
-        public string PlaceUrl { get; private set; }
+        public string PlaceUrl { get; }
 
         /// <summary>
         /// Gets the type of the place.
         /// </summary>
-        public FlickrPlaceType PlaceType { get; private set; }
+        public FlickrPlaceType PlaceType { get; }
 
         /// <summary>
         /// Gets the ID of the type of the place.
@@ -49,20 +49,20 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         public int PlaceTypeId { get; private set; }
 
         /// <summary>
-        /// Gets the name of the timezone of the place - eg. <code>Europe/London</code> or
-        /// <code>Europe/Copenhagen</code>.
+        /// Gets the name of the timezone of the place - eg. <c>Europe/London</c> or
+        /// <c>Europe/Copenhagen</c>.
         /// </summary>
-        public string Timezone { get; private set; }
+        public string Timezone { get; }
 
         /// <summary>
         /// Gets Where On Earth (WOE) name of the place.
         /// </summary>
-        public string WoeName { get; private set; }
+        public string WoeName { get; }
 
         /// <summary>
         /// Gets the name of the place.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         #endregion
 
@@ -73,19 +73,15 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPlaceItem(XElement xml) : base(xml) {
-
-            double latitude;
-            double longitude;
-            int placeTypeId;
             
             // Parse the attributes
             Id = xml.GetAttributeValue("place_id");
             WoeId = xml.GetAttributeValue("woeid");
-            Latitude = xml.GetAttributeValueAsDouble("latitude", out latitude) ? latitude : 0;
-            Longitude = xml.GetAttributeValueAsDouble("longitude", out longitude) ? longitude : 0;
+            Latitude = xml.GetAttributeValueAsDouble("latitude", out double latitude) ? latitude : 0;
+            Longitude = xml.GetAttributeValueAsDouble("longitude", out double longitude) ? longitude : 0;
             PlaceUrl = xml.GetAttributeValue("place_url");
             PlaceType = xml.GetAttributeValueAsEnum("place_type", FlickrPlaceType.Unknown);
-            PlaceTypeId = xml.GetAttributeValueAsInt32("place_type_id", out placeTypeId) ? placeTypeId : 0;
+            PlaceTypeId = xml.GetAttributeValueAsInt32("place_type_id", out int placeTypeId) ? placeTypeId : 0;
             Timezone = xml.GetAttributeValue("timezone");
             WoeName = xml.GetAttributeValue("woe_name");
 
@@ -106,6 +102,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// Gets an instance of <see cref="FlickrPlaceItem"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPlaceItem"/>.</returns>
         public static FlickrPlaceItem Parse(XElement xml) {
             return xml == null ? null : new FlickrPlaceItem(xml);
         }

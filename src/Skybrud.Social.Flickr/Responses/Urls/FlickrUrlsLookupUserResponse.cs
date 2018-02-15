@@ -1,10 +1,11 @@
-﻿using Skybrud.Social.Flickr.Objects.Urls;
+﻿using System;
+using Skybrud.Social.Flickr.Objects.Urls;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Urls {
 
     /// <summary>
-    /// Class representing a response from the <code>flickr.places.getInfo</code> Flickr API method.
+    /// Class representing a response from the <c>flickr.places.getInfo</c> Flickr API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.places.getInfo.html</cref>
@@ -35,9 +36,10 @@ namespace Skybrud.Social.Flickr.Responses.Urls {
         /// Parses the specified <paramref name="response"/> into an instance of <see cref="FlickrUrlsLookupUserResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="FlickrUrlsLookupUserResponse"/>.</returns>
+        /// <returns>An instance of <see cref="FlickrUrlsLookupUserResponse"/>.</returns>
         public static FlickrUrlsLookupUserResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new FlickrUrlsLookupUserResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new FlickrUrlsLookupUserResponse(response);
         }
 
         #endregion

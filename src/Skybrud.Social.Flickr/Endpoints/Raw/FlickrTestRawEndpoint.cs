@@ -1,9 +1,11 @@
-﻿using System.Collections.Specialized;
-using Skybrud.Social.Flickr.OAuth;
+﻿using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
-    
+
+    /// <summary>
+    /// Class representing the raw implementation of the <strong>Test</strong> Flickr endpoint.
+    /// </summary>
     public class FlickrTestRawEndpoint {
 
         #region Properties
@@ -11,13 +13,13 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Flickr OAuth client.
         /// </summary>
-        public FlickrOAuthClient Client { get; private set; }
+        public FlickrOAuthClient Client { get; }
 
         #endregion
 
         #region Constructors
 
-        public FlickrTestRawEndpoint(FlickrOAuthClient client) {
+        internal FlickrTestRawEndpoint(FlickrOAuthClient client) {
             Client = client;
         }
 
@@ -26,9 +28,9 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         #region Member methods
 
         /// <summary>
-        /// A testing method which checks if the caller is logged in then returns their username. Requires the <code>read</code> permission/scope.
+        /// A testing method which checks if the caller is logged in then returns their username. Requires the <c>read</c> permission/scope.
         /// </summary>
-        /// <returns>Returns the username of the authenticated user.</returns>
+        /// <returns>The username of the authenticated user.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.test.login.html</cref>
         /// </see>

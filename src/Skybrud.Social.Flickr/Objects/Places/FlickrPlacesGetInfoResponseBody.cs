@@ -4,7 +4,7 @@ using Skybrud.Essentials.Xml.Extensions;
 namespace Skybrud.Social.Flickr.Objects.Places {
 
     /// <summary>
-    /// Class representing the response body as returned by the <code>flickr.places.getInfo</code> API method.
+    /// Class representing the response body as returned by the <c>flickr.places.getInfo</c> API method.
     /// </summary>
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/flickr.places.getInfo.html</cref>
@@ -16,7 +16,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// <summary>
         /// Gets a reference to an instance of <see cref="FlickrPlace"/> with information about the place.
         /// </summary>
-        public FlickrPlace Place { get; private set; }
+        public FlickrPlace Place { get; }
 
         #endregion
 
@@ -38,6 +38,7 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// Gets an instance of <see cref="FlickrPlacesGetInfoResponseBody"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
+        /// <returns>An instance of <see cref="FlickrPlacesGetInfoResponseBody"/>.</returns>
         public static FlickrPlacesGetInfoResponseBody Parse(XElement xml) {
             return xml == null ? null : new FlickrPlacesGetInfoResponseBody(xml);
         }
