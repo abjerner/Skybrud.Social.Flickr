@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using Skybrud.Essentials.Locations;
 using Skybrud.Essentials.Xml.Extensions;
 using Skybrud.Social.Flickr.Enums;
@@ -73,19 +74,27 @@ namespace Skybrud.Social.Flickr.Objects.Places {
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPlaceItem(XElement xml) : base(xml) {
 
+            double latitude;
+            double longitude;
+            int placeTypeId;
+            
             // Parse the attributes
             Id = xml.GetAttributeValue("place_id");
             WoeId = xml.GetAttributeValue("woeid");
-            Latitude = xml.GetAttributeValue<double>("latitude");
-            Longitude = xml.GetAttributeValue<double>("longitude");
+            Latitude = xml.GetAttributeValueAsDouble("latitude", out latitude) ? latitude : 0;
+            Longitude = xml.GetAttributeValueAsDouble("longitude", out longitude) ? longitude : 0;
             PlaceUrl = xml.GetAttributeValue("place_url");
-            PlaceType = xml.GetAttributeValueAsEnum<FlickrPlaceType>("place_type");
-            PlaceTypeId = xml.GetAttributeValue<int>("place_type_id");
+            PlaceType = xml.GetAttributeValueAsEnum("place_type", FlickrPlaceType.Unknown);
+            PlaceTypeId = xml.GetAttributeValueAsInt32("place_type_id", out placeTypeId) ? placeTypeId : 0;
             Timezone = xml.GetAttributeValue("timezone");
             WoeName = xml.GetAttributeValue("woe_name");
-            
+
             // Get the name from the inner text
             Name = xml.Value;
+
+            if (String.IsNullOrWhiteSpace(Name)) {
+                Name = xml.GetAttributeValue("name");
+            }
         
         }
 
