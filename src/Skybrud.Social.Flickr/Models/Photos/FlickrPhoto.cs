@@ -4,9 +4,9 @@ using Skybrud.Essentials.Enums;
 using Skybrud.Essentials.Time;
 using Skybrud.Essentials.Xml.Extensions;
 using Skybrud.Social.Flickr.Enums;
-using Skybrud.Social.Flickr.Objects.Places;
+using Skybrud.Social.Flickr.Models.Places;
 
-namespace Skybrud.Social.Flickr.Objects.Photos {
+namespace Skybrud.Social.Flickr.Models.Photos {
     
     /// <summary>
     /// Class representing a Flickr photo.

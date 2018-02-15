@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Skybrud.Essentials.Xml;
 
-namespace Skybrud.Social.Flickr.Objects {
+namespace Skybrud.Social.Flickr.Models {
     
     /// <summary>
     /// Class representing a basic object from the Flickr API derived from an instance of <see cref="XElement"/>.

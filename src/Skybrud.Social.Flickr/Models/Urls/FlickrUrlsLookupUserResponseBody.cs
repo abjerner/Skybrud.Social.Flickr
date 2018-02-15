@@ -1,8 +1,8 @@
 ﻿using System.Xml.Linq;
 using Skybrud.Essentials.Xml.Extensions;
-using Skybrud.Social.Flickr.Objects.People;
+using Skybrud.Social.Flickr.Models.People;
 
-namespace Skybrud.Social.Flickr.Objects.Urls {
+namespace Skybrud.Social.Flickr.Models.Urls {
 
     /// <summary>
     /// Class representing the response body as returned by the <c>flickr.urls.lookupUser</c> API method.

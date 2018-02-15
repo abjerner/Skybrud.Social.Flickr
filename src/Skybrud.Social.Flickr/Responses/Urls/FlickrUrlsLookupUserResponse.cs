@@ -1,5 +1,5 @@
 ﻿using System;
-using Skybrud.Social.Flickr.Objects.Urls;
+using Skybrud.Social.Flickr.Models.Urls;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Urls {

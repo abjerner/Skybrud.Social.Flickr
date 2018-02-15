@@ -1,5 +1,5 @@
 ﻿using System;
-using Skybrud.Social.Flickr.Objects.Places;
+using Skybrud.Social.Flickr.Models.Places;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Places {

@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Skybrud.Essentials.Xml.Extensions;
 
-namespace Skybrud.Social.Flickr.Objects.Places {
+namespace Skybrud.Social.Flickr.Models.Places {
     
     /// <summary>
     /// Class representing the response body as returned by the <c>flickr.places.findByLatLon</c> API method.

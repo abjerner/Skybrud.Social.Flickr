@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Skybrud.Essentials.Xml.Extensions;
 
-namespace Skybrud.Social.Flickr.Objects.Photosets {
+namespace Skybrud.Social.Flickr.Models.Photosets {
 
     /// <summary>
     /// Class representing the response body of a request to the Flickr API for getting a list of photosets.

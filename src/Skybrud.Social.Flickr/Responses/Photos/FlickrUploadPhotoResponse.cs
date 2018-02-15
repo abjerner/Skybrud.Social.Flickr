@@ -1,5 +1,5 @@
 ﻿using System;
-using Skybrud.Social.Flickr.Objects.Photos;
+using Skybrud.Social.Flickr.Models.Photos;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Photos {

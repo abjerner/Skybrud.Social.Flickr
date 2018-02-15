@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Skybrud.Essentials.Xml.Extensions;
 
-namespace Skybrud.Social.Flickr.Objects.Photos {
+namespace Skybrud.Social.Flickr.Models.Photos {
     
     public class FlickrPhotoOwner : FlickrObject {
 

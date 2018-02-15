@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using Skybrud.Essentials.Time;
 using Skybrud.Essentials.Xml.Extensions;
 
-namespace Skybrud.Social.Flickr.Objects.Photosets {
+namespace Skybrud.Social.Flickr.Models.Photosets {
     
     /// <summary>
     /// Class representing a photoset.
