@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using Skybrud.Essentials.Locations;
+using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Models.Places {
@@ -7,7 +7,7 @@ namespace Skybrud.Social.Flickr.Models.Places {
     /// <summary>
     /// Class representing a place.
     /// </summary>
-    public class FlickrPlace : FlickrObject, ILocation {
+    public class FlickrPlace : FlickrObject, IPoint {
 
         #region Properties
 
