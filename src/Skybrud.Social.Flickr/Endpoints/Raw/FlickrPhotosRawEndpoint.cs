@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Flickr.Options.Photos;
 using Skybrud.Social.Http;
@@ -16,7 +15,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Flickr OAuth client.
         /// </summary>
-        public FlickrOAuthClient Client { get; private set; }
+        public FlickrOAuthClient Client { get; }
 
         #endregion
 
@@ -40,7 +39,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         ///     <cref>https://www.flickr.com/services/api/flickr.photos.getInfo.html</cref>
         /// </see>
         public SocialHttpResponse GetInfo(string photoId) {
-            if (String.IsNullOrWhiteSpace(photoId)) throw new ArgumentNullException(nameof(photoId));
+            if (string.IsNullOrWhiteSpace(photoId)) throw new ArgumentNullException(nameof(photoId));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
                 {"method", "flickr.photos.getInfo"},
                 {"photo_id", photoId},
