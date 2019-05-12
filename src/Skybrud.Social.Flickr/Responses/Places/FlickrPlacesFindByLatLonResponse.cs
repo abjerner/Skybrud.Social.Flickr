@@ -1,6 +1,6 @@
 ﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Flickr.Models.Places;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Places {
 
@@ -17,8 +17,8 @@ namespace Skybrud.Social.Flickr.Responses.Places {
         /// <summary>
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
-        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> the response should be based on.</param>
-        private FlickrPlacesFindByLatLonResponse(SocialHttpResponse response) : base(response) {
+        /// <param name="response">The instance of <see cref="IHttpResponse"/> the response should be based on.</param>
+        private FlickrPlacesFindByLatLonResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -37,7 +37,7 @@ namespace Skybrud.Social.Flickr.Responses.Places {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="FlickrPlacesFindByLatLonResponse"/>.</returns>
-        public static FlickrPlacesFindByLatLonResponse ParseResponse(SocialHttpResponse response) {
+        public static FlickrPlacesFindByLatLonResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
             return new FlickrPlacesFindByLatLonResponse(response);
         }

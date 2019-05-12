@@ -55,7 +55,7 @@ namespace Skybrud.Social.Flickr.Models.Photosets {
         /// <summary>
         /// Gets whether the photoset has a title.
         /// </summary>
-        public bool HasTitle => !String.IsNullOrWhiteSpace(Title);
+        public bool HasTitle => !string.IsNullOrWhiteSpace(Title);
 
         /// <summary>
         /// Gets the description of the photoset.
@@ -65,7 +65,7 @@ namespace Skybrud.Social.Flickr.Models.Photosets {
         /// <summary>
         /// Gets whether the photoset has a description.
         /// </summary>
-        public bool HasDescription => !String.IsNullOrWhiteSpace(Description);
+        public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
 
         #endregion
 

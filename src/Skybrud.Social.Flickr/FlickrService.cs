@@ -1,7 +1,7 @@
 ﻿using System;
+using Skybrud.Essentials.Http.OAuth;
 using Skybrud.Social.Flickr.Endpoints;
 using Skybrud.Social.Flickr.OAuth;
-using Skybrud.Social.OAuth;
 
 namespace Skybrud.Social.Flickr {
 
@@ -118,7 +118,7 @@ namespace Skybrud.Social.Flickr {
         /// </summary>
         /// <param name="client">The OAuth client.</param>
         /// <returns>An instance of <see cref="FlickrService"/>.</returns>
-        public static FlickrService CreateFromOAuthClient(SocialOAuthClient client) {
+        public static FlickrService CreateFromOAuthClient(OAuthClient client) {
             if (client == null) throw new ArgumentNullException(nameof(client));
             return CreateFromAccessToken(client.ConsumerKey, client.ConsumerSecret, client.Token, client.TokenSecret);
         }

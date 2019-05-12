@@ -1,7 +1,7 @@
 ﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Flickr.Options.Galleries;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
@@ -34,13 +34,13 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </summary>
         /// <param name="title">The title of the gallery.</param>
         /// <param name="description">The description of the gallery.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.create.html</cref>
         /// </see>
-        public SocialHttpResponse Create(string title, string description) {
-            if (String.IsNullOrWhiteSpace(title)) throw new ArgumentNullException(nameof(title));
-            if (String.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
+        public IHttpResponse Create(string title, string description) {
+            if (string.IsNullOrWhiteSpace(title)) throw new ArgumentNullException(nameof(title));
+            if (string.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
             return Create(new FlickrCreateGalleryOptions(title, description));
         }
 
@@ -48,11 +48,11 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Creates a new gallery with the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.create.html</cref>
         /// </see>
-        public SocialHttpResponse Create(FlickrCreateGalleryOptions options) {
+        public IHttpResponse Create(FlickrCreateGalleryOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }
@@ -61,12 +61,12 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Gets information about the gallery with the specified <code>galleryId</code>.
         /// </summary>
         /// <param name="galleryId">The ID of the gallery to fetch information about.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getInfo.html</cref>
         /// </see>
-        public SocialHttpResponse GetInfo(string galleryId) {
-            if (String.IsNullOrWhiteSpace(galleryId)) throw new ArgumentNullException(nameof(galleryId));
+        public IHttpResponse GetInfo(string galleryId) {
+            if (string.IsNullOrWhiteSpace(galleryId)) throw new ArgumentNullException(nameof(galleryId));
             return GetInfo(new FlickrGetGalleryInfoOptions(galleryId));
         }
 
@@ -74,11 +74,11 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Gets information about the gallery matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getInfo.html</cref>
         /// </see>
-        public SocialHttpResponse GetInfo(FlickrGetGalleryInfoOptions options) {
+        public IHttpResponse GetInfo(FlickrGetGalleryInfoOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }
@@ -89,12 +89,12 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </summary>
         /// <param name="userId">The ID of the user to get a galleries list for. If none is specified, the calling user
         /// is assumed.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getList.html</cref>
         /// </see>
-        public SocialHttpResponse GetList(string userId) {
-            if (String.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
+        public IHttpResponse GetList(string userId) {
+            if (string.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
             return GetList(new FlickrGetGalleryListOptions(userId));
         }
 
@@ -103,11 +103,11 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// newest to oldest.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.galleries.getList.html</cref>
         /// </see>
-        public SocialHttpResponse GetList(FlickrGetGalleryListOptions options) {
+        public IHttpResponse GetList(FlickrGetGalleryListOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }

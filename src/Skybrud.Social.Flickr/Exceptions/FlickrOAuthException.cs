@@ -1,5 +1,5 @@
-﻿using System.Collections.Specialized;
-using Skybrud.Social.Http;
+﻿using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
 
 namespace Skybrud.Social.Flickr.Exceptions {
     
@@ -13,8 +13,8 @@ namespace Skybrud.Social.Flickr.Exceptions {
 
         #region Constructors
 
-        public FlickrOAuthException(SocialHttpResponse response) : base(response) {
-            SocialHttpQueryString body = SocialHttpQueryString.ParseQueryString(response.Body);
+        public FlickrOAuthException(IHttpResponse response) : base(response) {
+            HttpQueryString body = HttpQueryString.ParseQueryString(response.Body);
             Problem = body["oauth_problem"] ?? "";
         }
 

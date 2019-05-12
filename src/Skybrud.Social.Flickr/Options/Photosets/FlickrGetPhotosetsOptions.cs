@@ -1,7 +1,7 @@
 using System;
 using Skybrud.Essentials.Common;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Flickr.Options.Photosets {
     
@@ -64,8 +64,8 @@ namespace Skybrud.Social.Flickr.Options.Photosets {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            if (String.IsNullOrWhiteSpace(UserId)) throw new PropertyNotSetException("UserId");
-            SocialHttpQueryString query = new SocialHttpQueryString();
+            if (string.IsNullOrWhiteSpace(UserId)) throw new PropertyNotSetException("UserId");
+            HttpQueryString query = new HttpQueryString();
             query.Add("method", "flickr.photosets.getList");
             query.Add("user_id", UserId);
             if (Page > 0) query.Add("page", Page);

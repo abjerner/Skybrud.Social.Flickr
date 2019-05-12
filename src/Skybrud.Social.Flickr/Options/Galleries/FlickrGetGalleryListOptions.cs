@@ -1,6 +1,6 @@
 ﻿using System;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Flickr.Options.Galleries {
 
@@ -81,9 +81,9 @@ namespace Skybrud.Social.Flickr.Options.Galleries {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            SocialHttpQueryString query = new SocialHttpQueryString();
+            HttpQueryString query = new HttpQueryString();
             query.Add("method", "flickr.galleries.getList");
-            if (!String.IsNullOrWhiteSpace(UserId)) query.Add("user_id ", UserId);
+            if (!string.IsNullOrWhiteSpace(UserId)) query.Add("user_id ", UserId);
             if (PerPage > 0) query.Add("per_page ", PerPage);
             if (Page > 0) query.Add("page ", Page);
             return query;

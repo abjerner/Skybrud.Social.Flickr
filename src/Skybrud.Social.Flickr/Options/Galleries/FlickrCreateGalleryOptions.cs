@@ -1,7 +1,7 @@
 ﻿using System;
 using Skybrud.Essentials.Common;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Flickr.Options.Galleries {
 
@@ -59,7 +59,7 @@ namespace Skybrud.Social.Flickr.Options.Galleries {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            SocialHttpQueryString query = new SocialHttpQueryString();
+            HttpQueryString query = new HttpQueryString();
             query.Add("method", "flickr.galleries.create");
             return query;
         }
@@ -70,14 +70,14 @@ namespace Skybrud.Social.Flickr.Options.Galleries {
         public IHttpPostData GetPostData() {
 
             // Both "Title" or "Description" should be specified
-            if (String.IsNullOrWhiteSpace(Title)) throw new PropertyNotSetException("Title");
-            if (String.IsNullOrWhiteSpace(Description)) throw new PropertyNotSetException("Description");
+            if (string.IsNullOrWhiteSpace(Title)) throw new PropertyNotSetException("Title");
+            if (string.IsNullOrWhiteSpace(Description)) throw new PropertyNotSetException("Description");
 
             // Append the options to the POST data (if specified)
-            SocialHttpPostData data = new SocialHttpPostData();
+            HttpPostData data = new HttpPostData();
             data.Add("title", Title);
             data.Add("description", Description);
-            if (!String.IsNullOrWhiteSpace(PrimaryPhotoId)) data.Add("primary_photo_id ", PrimaryPhotoId);
+            if (!string.IsNullOrWhiteSpace(PrimaryPhotoId)) data.Add("primary_photo_id ", PrimaryPhotoId);
 
             // TODO: The "full_result" parameter should be supported as well, but the Flickr API documentation doesn't specify it's type
 

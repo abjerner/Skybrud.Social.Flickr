@@ -1,7 +1,7 @@
 ﻿using System;
 using Skybrud.Essentials.Common;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Flickr.Options.Groups {
 
@@ -58,14 +58,14 @@ namespace Skybrud.Social.Flickr.Options.Groups {
         public IHttpQueryString GetQueryString() {
 
             // Either "GroupId" or "GroupPathAlias" should be specified
-            if (String.IsNullOrWhiteSpace(GroupId + GroupPathAlias)) throw new PropertyNotSetException("GroupId");
+            if (string.IsNullOrWhiteSpace(GroupId + GroupPathAlias)) throw new PropertyNotSetException("GroupId");
 
             // Append the options to the query string (if specified)
-            SocialHttpQueryString query = new SocialHttpQueryString();
+            HttpQueryString query = new HttpQueryString();
             query.Add("method", "flickr.groups.getInfo");
-            if (!String.IsNullOrWhiteSpace(GroupId)) query.Add("group_id", GroupId);
-            if (!String.IsNullOrWhiteSpace(GroupPathAlias)) query.Add("group_path_alias", GroupPathAlias);
-            if (!String.IsNullOrWhiteSpace(Language)) query.Add("lang", Language);
+            if (!string.IsNullOrWhiteSpace(GroupId)) query.Add("group_id", GroupId);
+            if (!string.IsNullOrWhiteSpace(GroupPathAlias)) query.Add("group_path_alias", GroupPathAlias);
+            if (!string.IsNullOrWhiteSpace(Language)) query.Add("lang", Language);
 
             return query;
 

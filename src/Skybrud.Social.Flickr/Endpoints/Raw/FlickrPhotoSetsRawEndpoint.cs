@@ -1,7 +1,8 @@
 ﻿using System;
+using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Flickr.Options.Photosets;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
@@ -35,23 +36,23 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <param name="photosetId">The ID of the photoset.</param>
         /// <param name="userId">The ID of the owner of the photoset. This is optional, but according to the Flickr API
         /// documentation, this gives better performance.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.photosets.getInfo.html</cref>
         /// </see>
-        public SocialHttpResponse GetInfo(string photosetId, string userId = null) {
+        public IHttpResponse GetInfo(string photosetId, string userId = null) {
             
             // A bit of input validation
-            if (String.IsNullOrWhiteSpace(photosetId)) throw new ArgumentNullException(nameof(photosetId));
+            if (string.IsNullOrWhiteSpace(photosetId)) throw new ArgumentNullException(nameof(photosetId));
 
             // Initialize the query string
-            SocialHttpQueryString query = new SocialHttpQueryString {
+            HttpQueryString query = new HttpQueryString {
                 {"method", "flickr.photosets.getInfo"},
                 {"photoset_id", photosetId}
             };
 
             // Append the user ID (if specified)
-            if (!String.IsNullOrWhiteSpace(userId)) query.Add("user_id", userId);
+            if (!string.IsNullOrWhiteSpace(userId)) query.Add("user_id", userId);
 
             // Make the call to the API
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", query);
@@ -62,12 +63,12 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Gets a list of the photosets of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.photosets.getList.html</cref>
         /// </see>
-        public SocialHttpResponse GetList(string userId) {
-            if (String.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
+        public IHttpResponse GetList(string userId) {
+            if (string.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
             return GetList(new FlickrGetPhotosetsOptions(userId));
         }
 
@@ -77,12 +78,12 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <param name="userId">The ID of the user.</param>
         /// <param name="page">The page to be returned..</param>
         /// <param name="perPage">The maximum amount of photosets to be returned per page.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.photosets.getList.html</cref>
         /// </see>
-        public SocialHttpResponse GetList(string userId, int page, int perPage) {
-            if (String.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
+        public IHttpResponse GetList(string userId, int page, int perPage) {
+            if (string.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
             return GetList(new FlickrGetPhotosetsOptions(userId, page, perPage));
         }
 
@@ -90,11 +91,11 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Gets a list of the photosets matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.photosets.getList.html</cref>
         /// </see>
-        public SocialHttpResponse GetList(FlickrGetPhotosetsOptions options) {
+        public IHttpResponse GetList(FlickrGetPhotosetsOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
         }

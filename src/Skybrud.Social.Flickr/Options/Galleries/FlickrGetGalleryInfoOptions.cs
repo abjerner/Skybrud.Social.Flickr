@@ -1,7 +1,7 @@
 ﻿using System;
 using Skybrud.Essentials.Common;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Flickr.Options.Galleries {
 
@@ -47,10 +47,10 @@ namespace Skybrud.Social.Flickr.Options.Galleries {
         public IHttpQueryString GetQueryString() {
 
             // "GalleryId" must be specified
-            if (String.IsNullOrWhiteSpace(GalleryId)) throw new PropertyNotSetException("GroupId");
+            if (string.IsNullOrWhiteSpace(GalleryId)) throw new PropertyNotSetException("GroupId");
 
             // Append the options to the query string (if specified)
-            SocialHttpQueryString query = new SocialHttpQueryString();
+            HttpQueryString query = new HttpQueryString();
             query.Add("method", "flickr.galleries.getInfo");
             query.Add("gallery_id", GalleryId);
 

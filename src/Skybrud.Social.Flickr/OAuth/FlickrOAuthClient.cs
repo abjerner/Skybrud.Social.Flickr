@@ -1,12 +1,12 @@
 ﻿using System;
 using Skybrud.Essentials.Common;
+using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.OAuth;
+using Skybrud.Essentials.Http.OAuth.Models;
+using Skybrud.Essentials.Http.OAuth.Responses;
 using Skybrud.Social.Flickr.Endpoints.Raw;
 using Skybrud.Social.Flickr.Responses;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
-using Skybrud.Social.OAuth;
-using Skybrud.Social.OAuth.Models;
-using Skybrud.Social.OAuth.Responses;
 
 namespace Skybrud.Social.Flickr.OAuth {
     
@@ -20,7 +20,7 @@ namespace Skybrud.Social.Flickr.OAuth {
     /// <see>
     ///     <cref>https://www.flickr.com/services/api/auth.oauth.html</cref>
     /// </see>
-    public class FlickrOAuthClient : SocialOAuthClient {
+    public class FlickrOAuthClient : OAuthClient {
 
         #region Properties
 
@@ -126,7 +126,7 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// back to the specified callback URL where you then can exchange the request token for an access token.
         /// </summary>
         /// <returns>An instance of <see cref="SocialOAuthRequestTokenResponse"/> representing the response.</returns>
-        public override SocialOAuthRequestTokenResponse GetRequestToken() {
+        public override OAuthRequestTokenResponse GetRequestToken() {
 
             // Flickr apparently deviates from the OAuth 1.0a specification, since they require the OAuth properties to
             // be specified in the query string.
@@ -139,10 +139,10 @@ namespace Skybrud.Social.Flickr.OAuth {
             if (Callback == null) throw new PropertyNotSetException("Callback");
 
             // Generate the OAuth signature
-            string signature = GenerateSignature(SocialHttpMethod.Get, RequestTokenUrl, default(IHttpQueryString), null);
+            string signature = GenerateSignature(HttpMethod.Get, RequestTokenUrl, default(IHttpQueryString), null);
 
             // Append the OAuth properties to the query string
-            SocialHttpQueryString queryString = new SocialHttpQueryString {
+            HttpQueryString queryString = new HttpQueryString {
                 {"oauth_nonce", Nonce},
                 {"oauth_timestamp", Timestamp},
                 {"oauth_consumer_key", ConsumerKey},
@@ -153,16 +153,16 @@ namespace Skybrud.Social.Flickr.OAuth {
             };
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.Http.DoHttpGetRequest(RequestTokenUrl, queryString);
+            IHttpResponse response = HttpUtils.Http.DoHttpGetRequest(RequestTokenUrl, queryString);
 
             // Validate the response
             FlickrResponse.ValidateResponse(response);
 
             // Parse the response body
-            SocialOAuthRequestToken body = SocialOAuthRequestToken.Parse(this, response.Body);
+            OAuthRequestToken body = OAuthRequestToken.Parse(this, response.Body);
 
             // Parse the response
-            return SocialOAuthRequestTokenResponse.ParseResponse(response, body);
+            return OAuthRequestTokenResponse.ParseResponse(response, body);
 
         }
 
@@ -171,8 +171,8 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// using this method. This is the third and final step of the authorization process.
         /// </summary>
         /// <param name="verifier">The verification key received after the user has accepted the app.</param>
-        /// <returns>An instance of <see cref="SocialOAuthAccessTokenResponse"/> representing the response.</returns>
-        public override SocialOAuthAccessTokenResponse GetAccessToken(string verifier) {
+        /// <returns>An instance of <see cref="OAuthAccessTokenResponse"/> representing the response.</returns>
+        public override OAuthAccessTokenResponse GetAccessToken(string verifier) {
 
             // Flickr apparently deviates from the OAuth 1.0a specification, since they require the OAuth properties to
             // be specified in the query string.
@@ -184,12 +184,12 @@ namespace Skybrud.Social.Flickr.OAuth {
             if (Token == null) throw new PropertyNotSetException("Token");
 
             // Initialize the query string
-            SocialHttpQueryString queryString = new SocialHttpQueryString {
+            HttpQueryString queryString = new HttpQueryString {
                 { "oauth_verifier", verifier }
             };
 
             // Generate the OAuth signature
-            string signature = GenerateSignature(SocialHttpMethod.Get, AccessTokenUrl, queryString, null);
+            string signature = GenerateSignature(HttpMethod.Get, AccessTokenUrl, queryString, null);
 
             // Append the OAuth properties to the query string
             queryString.Add("oauth_nonce", Nonce);
@@ -198,20 +198,20 @@ namespace Skybrud.Social.Flickr.OAuth {
             queryString.Add("oauth_signature_method", "HMAC-SHA1");
             queryString.Add("oauth_version", "1.0");
             queryString.Add("oauth_token", Token);
-            if (!String.IsNullOrWhiteSpace(Callback)) queryString.Add("oauth_callback", Callback);
+            if (!string.IsNullOrWhiteSpace(Callback)) queryString.Add("oauth_callback", Callback);
             queryString.Add("oauth_signature", signature);
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.Http.DoHttpGetRequest(AccessTokenUrl, queryString);
+            IHttpResponse response = HttpUtils.Http.DoHttpGetRequest(AccessTokenUrl, queryString);
 
             // Validate the response
             FlickrResponse.ValidateResponse(response);
 
             // Parse the response body
-            SocialOAuthAccessToken body = SocialOAuthAccessToken.Parse(this, response.Body);
+            OAuthAccessToken body = OAuthAccessToken.Parse(this, response.Body);
 
             // Parse the response
-            return SocialOAuthAccessTokenResponse.ParseResponse(response, body);
+            return OAuthAccessTokenResponse.ParseResponse(response, body);
         
         }
 
@@ -219,10 +219,10 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// Adds the OAuth 1.0a authorization header to the request
         /// </summary>
         /// <param name="request"></param>
-        protected override void PrepareHttpRequest(SocialHttpRequest request) {
+        protected override void PrepareHttpRequest(IHttpRequest request) {
 
             // Skip OAuth 1.0a signed requests if no OAuth information is specified (this is a Flickr feature, not OAuth)
-            if (String.IsNullOrWhiteSpace(ConsumerKey + ConsumerSecret + Token + TokenSecret)) return;
+            if (string.IsNullOrWhiteSpace(ConsumerKey + ConsumerSecret + Token + TokenSecret)) return;
 
             // Sign requests using the logic in "SocialOAuthClient"
             base.PrepareHttpRequest(request);

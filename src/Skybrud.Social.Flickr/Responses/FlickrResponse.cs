@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Xml.Linq;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Flickr.Exceptions;
-using Skybrud.Social.Http;
 using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Responses {
@@ -9,15 +9,15 @@ namespace Skybrud.Social.Flickr.Responses {
     /// <summary>
     /// Class representing a response from the Flickr API.
     /// </summary>
-    public class FlickrResponse : SocialResponse {
+    public class FlickrResponse : HttpResponseBase {
 
         #region Constructors
 
         /// <summary>
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
-        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> the response should be based on.</param>
-        protected FlickrResponse(SocialHttpResponse response) : base(response) { }
+        /// <param name="response">The instance of <see cref="IHttpResponse"/> the response should be based on.</param>
+        protected FlickrResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace Skybrud.Social.Flickr.Responses {
         /// Validates the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
-        public static void ValidateResponse(SocialHttpResponse response) {
+        public static void ValidateResponse(IHttpResponse response) {
 
             // Parse the OAuth error
             if (response.Body.StartsWith("oauth_problem=")) throw new FlickrOAuthException(response);
@@ -44,7 +44,7 @@ namespace Skybrud.Social.Flickr.Responses {
         /// Validates the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
-        public static void ValidateXmlResponse(SocialHttpResponse response) {
+        public static void ValidateXmlResponse(IHttpResponse response) {
 
             // Parse the XML
             XElement xResponse = XElement.Parse(response.Body);
@@ -86,8 +86,8 @@ namespace Skybrud.Social.Flickr.Responses {
         /// <summary>
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
-        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> the response should be based on.</param>
-        protected FlickrResponse(SocialHttpResponse response) : base(response) { }
+        /// <param name="response">The instance of <see cref="IHttpResponse"/> the response should be based on.</param>
+        protected FlickrResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 

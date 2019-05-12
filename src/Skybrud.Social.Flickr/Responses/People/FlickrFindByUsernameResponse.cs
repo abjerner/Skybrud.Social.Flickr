@@ -1,6 +1,6 @@
 ﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Flickr.Models.People;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.People {
 
@@ -8,7 +8,7 @@ namespace Skybrud.Social.Flickr.Responses.People {
 
         #region Constructors
 
-        private FlickrFindByUsernameResponse(SocialHttpResponse response) : base(response) {
+        private FlickrFindByUsernameResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -27,7 +27,7 @@ namespace Skybrud.Social.Flickr.Responses.People {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="FlickrFindByUsernameResponse"/>.</returns>
-        public static FlickrFindByUsernameResponse ParseResponse(SocialHttpResponse response) {
+        public static FlickrFindByUsernameResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
             return new FlickrFindByUsernameResponse(response);
         }

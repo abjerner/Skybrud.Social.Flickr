@@ -1,10 +1,10 @@
 using System;
 using Skybrud.Essentials.Common;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 using Skybrud.Essentials.Strings;
 using Skybrud.Essentials.Time;
 using Skybrud.Social.Flickr.Models.Places;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Flickr.Options.Places {
     
@@ -90,15 +90,15 @@ namespace Skybrud.Social.Flickr.Options.Places {
             if (PlaceType == FlickrPlaceType.Unknown) throw new PropertyNotSetException("PlaceType");
 
             // Either "WoeId" or "PlaceId" must be specified
-            if (String.IsNullOrEmpty(WoeId + PlaceId)) throw new PropertyNotSetException("PlaceId");
+            if (string.IsNullOrEmpty(WoeId + PlaceId)) throw new PropertyNotSetException("PlaceId");
 
-            SocialHttpQueryString query = new SocialHttpQueryString();
+            HttpQueryString query = new HttpQueryString();
             query.Add("method", "flickr.places.placesForTags");
             query.Add("place_type_id", (int)PlaceType);
-            if (!String.IsNullOrEmpty(WoeId)) query.Add("woe_id", WoeId);
-            if (!String.IsNullOrEmpty(PlaceId)) query.Add("place_id", WoeId);
+            if (!string.IsNullOrEmpty(WoeId)) query.Add("woe_id", WoeId);
+            if (!string.IsNullOrEmpty(PlaceId)) query.Add("place_id", WoeId);
             if (Threshold > 0) query.Add("threshold", Threshold);
-            if (Tags != null && Tags.Length > 0) query.Add("tags", String.Join(",", Tags));
+            if (Tags != null && Tags.Length > 0) query.Add("tags", string.Join(",", Tags));
             if (Tags != null && Tags.Length > 0) query.Add("tag_mode", StringHelper.ToPascalCase(TagMode));
             if (MinUploadDate != null) query.Add("min_upload_date", MinUploadDate.UnixTimestamp);
             if (MaxUploadDate != null) query.Add("max_upload_date", MaxUploadDate.UnixTimestamp);

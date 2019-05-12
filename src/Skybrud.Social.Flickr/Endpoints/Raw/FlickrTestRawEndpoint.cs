@@ -1,5 +1,6 @@
-﻿using Skybrud.Social.Flickr.OAuth;
-using Skybrud.Social.Http;
+﻿using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Social.Flickr.OAuth;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
@@ -34,8 +35,8 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.test.login.html</cref>
         /// </see>
-        public SocialHttpResponse Login() {
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
+        public IHttpResponse Login() {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.test.login"},
             });
         }

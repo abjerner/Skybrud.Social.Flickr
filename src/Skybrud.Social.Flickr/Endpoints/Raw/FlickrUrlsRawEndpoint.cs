@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Specialized;
+using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Flickr.OAuth;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
@@ -37,13 +37,13 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Return the Flickr ID of the user matching the specified <paramref name="url"/>.
         /// </summary>
         /// <param name="url">The photos or profile URL of the user.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.urls.lookupUser.html</cref>
         /// </see>
-        public SocialHttpResponse LookupUser(string url) {
-            if (String.IsNullOrWhiteSpace(url)) throw new ArgumentNullException(nameof(url));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
+        public IHttpResponse LookupUser(string url) {
+            if (string.IsNullOrWhiteSpace(url)) throw new ArgumentNullException(nameof(url));
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.urls.lookupUser"},
                 {"url", url}
             });

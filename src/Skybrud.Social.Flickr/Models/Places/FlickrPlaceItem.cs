@@ -87,7 +87,7 @@ namespace Skybrud.Social.Flickr.Models.Places {
             // Get the name from the inner text
             Name = xml.Value;
 
-            if (String.IsNullOrWhiteSpace(Name)) {
+            if (string.IsNullOrWhiteSpace(Name)) {
                 Name = xml.GetAttributeValue("name");
             }
         

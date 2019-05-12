@@ -1,9 +1,8 @@
-using System;
 using Skybrud.Essentials.Common;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 using Skybrud.Social.Flickr.Enums;
 using Skybrud.Social.Flickr.Models.Photos;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Flickr.Options.Photos {
     
@@ -88,7 +87,7 @@ namespace Skybrud.Social.Flickr.Options.Photos {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            return new SocialHttpQueryString();
+            return new HttpQueryString();
         }
 
         /// <summary>
@@ -97,16 +96,16 @@ namespace Skybrud.Social.Flickr.Options.Photos {
         public IHttpPostData GetPostData() {
 
             // Check wether a photo was specified
-            if (String.IsNullOrWhiteSpace(Photo)) throw new PropertyNotSetException("Photo");
+            if (string.IsNullOrWhiteSpace(Photo)) throw new PropertyNotSetException("Photo");
 
-            SocialHttpPostData data = new SocialHttpPostData {
+            HttpPostData data = new HttpPostData {
                 IsMultipart = true
             };
 
             data.AddFile("photo", Photo);
-            if (!String.IsNullOrWhiteSpace(Title)) data.Add("title", Title);
-            if (!String.IsNullOrWhiteSpace(Description)) data.Add("description", Description);
-            if (Tags != null && Tags.Length > 0) data.Add("tags", String.Join(" ", Tags));
+            if (!string.IsNullOrWhiteSpace(Title)) data.Add("title", Title);
+            if (!string.IsNullOrWhiteSpace(Description)) data.Add("description", Description);
+            if (Tags != null && Tags.Length > 0) data.Add("tags", string.Join(" ", Tags));
 
             // Append the visiblity (if not private)
             switch (Visibility) {

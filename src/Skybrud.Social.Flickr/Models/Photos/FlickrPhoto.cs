@@ -71,7 +71,7 @@ namespace Skybrud.Social.Flickr.Models.Photos {
         /// <summary>
         /// Gets whether the photo has a title.
         /// </summary>
-        public bool HasTitle => !String.IsNullOrWhiteSpace(Title);
+        public bool HasTitle => !string.IsNullOrWhiteSpace(Title);
 
         /// <summary>
         /// Gets the description of the photo.
@@ -81,7 +81,7 @@ namespace Skybrud.Social.Flickr.Models.Photos {
         /// <summary>
         /// Gets whether the photo has a description.
         /// </summary>
-        public bool HasDescription => !String.IsNullOrWhiteSpace(Description);
+        public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
 
         public FlickrPhotoSafetyVisibility Visibility { get; }
         

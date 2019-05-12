@@ -1,7 +1,8 @@
 ﻿using System;
+using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Flickr.Options.Photos;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
@@ -34,13 +35,13 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// have permission to view the photo.
         /// </summary>
         /// <param name="photoId">The ID of the photo.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/flickr.photos.getInfo.html</cref>
         /// </see>
-        public SocialHttpResponse GetInfo(string photoId) {
+        public IHttpResponse GetInfo(string photoId) {
             if (string.IsNullOrWhiteSpace(photoId)) throw new ArgumentNullException(nameof(photoId));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new SocialHttpQueryString {
+            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.photos.getInfo"},
                 {"photo_id", photoId},
                 {"username", photoId}
@@ -51,11 +52,11 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// Uploads a photo as described by the specified <code>options</code>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://www.flickr.com/services/api/upload.api.html</cref>
         /// </see>
-        public SocialHttpResponse Upload(FlickrUploadPhotoOptions options) {
+        public IHttpResponse Upload(FlickrUploadPhotoOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpPostRequest("https://up.flickr.com/services/upload/", options);
         }

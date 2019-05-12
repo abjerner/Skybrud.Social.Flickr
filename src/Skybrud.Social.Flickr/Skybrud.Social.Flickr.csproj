@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Skybrud.Essentials" Version="1.1.12" />
-    <PackageReference Include="Skybrud.Social.Core" Version="1.0.4" />
+    <PackageReference Include="Skybrud.Essentials.Http" Version="1.0.4" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">

@@ -1,6 +1,6 @@
 ﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Flickr.Models.Photos;
-using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Flickr.Responses.Photos {
 
@@ -14,7 +14,7 @@ namespace Skybrud.Social.Flickr.Responses.Photos {
 
         #region Constructors
 
-        private FlickrUploadPhotoResponse(SocialHttpResponse response) : base(response) {
+        private FlickrUploadPhotoResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -33,7 +33,7 @@ namespace Skybrud.Social.Flickr.Responses.Photos {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="FlickrUploadPhotoResponse"/>.</returns>
-        public static FlickrUploadPhotoResponse ParseResponse(SocialHttpResponse response) {
+        public static FlickrUploadPhotoResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
             return new FlickrUploadPhotoResponse(response);
         }
