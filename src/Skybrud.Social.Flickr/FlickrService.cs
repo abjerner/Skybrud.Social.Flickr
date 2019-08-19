@@ -127,6 +127,16 @@ namespace Skybrud.Social.Flickr {
             return CreateFromAccessToken(client.ConsumerKey, client.ConsumerSecret, client.Token, client.TokenSecret);
         }
 
+        /// <summary>
+        /// Initialize a service reference based on the specified OAuth <paramref name="client"/>.
+        /// </summary>
+        /// <param name="client">The OAuth client.</param>
+        /// <returns>An instance of <see cref="FlickrService"/>.</returns>
+        public static FlickrService CreateFromOAuthClient(FlickrOAuthClient client) {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            return new FlickrService(client);
+        }
+
         #endregion
 
     }
