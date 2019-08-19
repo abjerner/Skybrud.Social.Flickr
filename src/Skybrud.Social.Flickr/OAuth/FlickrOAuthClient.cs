@@ -1,5 +1,4 @@
-﻿using System;
-using Skybrud.Essentials.Common;
+﻿using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Http.OAuth;
@@ -125,7 +124,7 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// to the website of the provider for approving the application. If successful, the user will be redirected
         /// back to the specified callback URL where you then can exchange the request token for an access token.
         /// </summary>
-        /// <returns>An instance of <see cref="SocialOAuthRequestTokenResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="OAuthRequestTokenResponse"/> representing the response.</returns>
         public override OAuthRequestTokenResponse GetRequestToken() {
 
             // Flickr apparently deviates from the OAuth 1.0a specification, since they require the OAuth properties to
