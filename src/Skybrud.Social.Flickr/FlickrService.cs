@@ -61,7 +61,11 @@ namespace Skybrud.Social.Flickr {
         /// </summary>
         public FlickrService() : this(new FlickrOAuthClient()) { }
 
-        private FlickrService(FlickrOAuthClient client) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="client"/>.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        protected FlickrService(FlickrOAuthClient client) {
             Client = client;
             Galleries = new FlickrGalleriesEndpoint(this);
             People = new FlickrPeopleEndpoint(this);
