@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Essentials.Xml.Extensions;
 
