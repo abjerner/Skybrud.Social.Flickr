@@ -126,7 +126,7 @@ namespace Skybrud.Social.Flickr.OAuth {
         }
 
         #endregion
-
+        
         /// <summary>
         /// Gets a request token from the provider. After acquiring a request token, the user should be redirected
         /// to the website of the provider for approving the application. If successful, the user will be redirected
@@ -233,11 +233,11 @@ namespace Skybrud.Social.Flickr.OAuth {
             // Skip OAuth 1.0a signed requests if no OAuth information is specified (this is a Flickr feature, not OAuth)
             if (string.IsNullOrWhiteSpace(ConsumerKey + ConsumerSecret + Token + TokenSecret)) return;
 
-            // Sign requests using the logic in "SocialOAuthClient"
+            // Sign requests using the logic in "OAuthClient"
             base.PrepareHttpRequest(request);
 
         }
-    
+
     }
 
 }
