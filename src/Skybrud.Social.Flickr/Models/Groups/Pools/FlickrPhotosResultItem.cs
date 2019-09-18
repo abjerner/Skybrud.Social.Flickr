@@ -4,7 +4,7 @@ using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Models.Groups.Pools {
 
-    public class PhotosResultItem : FlickrObject {
+    public class FlickrPhotosResultItem : FlickrObject {
 
         #region Properties
 
@@ -43,7 +43,7 @@ namespace Skybrud.Social.Flickr.Models.Groups.Pools {
         /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
-        protected PhotosResultItem(XElement xml) : base(xml) {
+        protected FlickrPhotosResultItem(XElement xml) : base(xml) {
             Id = xml.GetAttributeValue("id");
             Owner = xml.GetAttributeValue("owner");
             Server = xml.GetAttributeValue("server");
@@ -63,12 +63,12 @@ namespace Skybrud.Social.Flickr.Models.Groups.Pools {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="PhotosResultItem"/> from the specified <paramref name="xml"/>.
+        /// Gets an instance of <see cref="FlickrPhotosResultItem"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
-        /// <returns>An instance of <see cref="PhotosResultItem"/>.</returns>
-        public static PhotosResultItem Parse(XElement xml) {
-            return xml == null ? null : new PhotosResultItem(xml);
+        /// <returns>An instance of <see cref="FlickrPhotosResultItem"/>.</returns>
+        public static FlickrPhotosResultItem Parse(XElement xml) {
+            return xml == null ? null : new FlickrPhotosResultItem(xml);
         }
 
         #endregion

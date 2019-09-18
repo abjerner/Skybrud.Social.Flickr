@@ -3,7 +3,7 @@ using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Models.Groups.Pools {
 
-    public class PhotosResultList : FlickrObject {
+    public class FlickrPhotosResultList : FlickrObject {
 
         #region Properties
         
@@ -15,7 +15,7 @@ namespace Skybrud.Social.Flickr.Models.Groups.Pools {
 
         public int Total { get; }
 
-        public PhotosResultItem[] Photos { get; }
+        public FlickrPhotosResultItem[] Photos { get; }
 
         #endregion
 
@@ -25,12 +25,12 @@ namespace Skybrud.Social.Flickr.Models.Groups.Pools {
         /// Initializes a new instance from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
-        protected PhotosResultList(XElement xml) : base(xml) {
+        protected FlickrPhotosResultList(XElement xml) : base(xml) {
             Page = xml.GetAttributeValueAsInt32("page");
             Pages = xml.GetAttributeValueAsInt32("pages");
             PerPage = xml.GetAttributeValueAsInt32("perpage");
             Total = xml.GetAttributeValueAsInt32("total");
-            Photos = xml.GetElements("photo", PhotosResultItem.Parse);
+            Photos = xml.GetElements("photo", FlickrPhotosResultItem.Parse);
         }
 
         #endregion
@@ -38,12 +38,12 @@ namespace Skybrud.Social.Flickr.Models.Groups.Pools {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="PhotosResultList"/> from the specified <paramref name="xml"/>.
+        /// Gets an instance of <see cref="FlickrPhotosResultList"/> from the specified <paramref name="xml"/>.
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> to parse.</param>
-        /// <returns>An instance of <see cref="PhotosResultList"/>.</returns>
-        public static PhotosResultList Parse(XElement xml) {
-            return xml == null ? null : new PhotosResultList(xml);
+        /// <returns>An instance of <see cref="FlickrPhotosResultList"/>.</returns>
+        public static FlickrPhotosResultList Parse(XElement xml) {
+            return xml == null ? null : new FlickrPhotosResultList(xml);
         }
 
         #endregion

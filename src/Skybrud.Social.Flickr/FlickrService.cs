@@ -22,10 +22,10 @@ namespace Skybrud.Social.Flickr {
         /// </summary>
         public FlickrGalleriesEndpoint Galleries { get; }
 
-        ///// <summary>
-        ///// Gets a reference to the groups endpoint.
-        ///// </summary>
-        //public FlickrGroupsEndpoint Groups { get; }
+        /// <summary>
+        /// Gets a reference to the groups endpoint.
+        /// </summary>
+        public FlickrGroupsEndpoint Groups { get; }
 
         /// <summary>
         /// Gets a reference to the people endpoint.
@@ -73,6 +73,7 @@ namespace Skybrud.Social.Flickr {
         protected FlickrService(FlickrOAuthClient client) {
             Client = client;
             Galleries = new FlickrGalleriesEndpoint(this);
+            Groups = new FlickrGroupsEndpoint(this);
             People = new FlickrPeopleEndpoint(this);
             Photosets = new FlickrPhotosetsEndpoint(this);
             Photos = new FlickrPhotosEndpoint(this);
