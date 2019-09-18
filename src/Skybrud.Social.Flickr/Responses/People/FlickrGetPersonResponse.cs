@@ -12,13 +12,7 @@ namespace Skybrud.Social.Flickr.Responses.People {
         #region Constructors
 
         private FlickrGetPersonResponse(IHttpResponse response) : base(response) {
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Parse the response body
             Body = ParseXmlElement(response.Body, FlickrGetPersonResponseBody.Parse);
-
         }
 
         #endregion

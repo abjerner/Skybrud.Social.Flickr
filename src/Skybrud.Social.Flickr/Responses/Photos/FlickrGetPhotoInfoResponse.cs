@@ -12,13 +12,7 @@ namespace Skybrud.Social.Flickr.Responses.Photos {
         #region Constructors
 
         private FlickrGetPhotoInfoResponse(IHttpResponse response) : base(response) {
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Parse the response body
             Body = ParseXmlElement(response.Body, FlickrGetPhotoResponseBody.Parse);
-
         }
 
         #endregion

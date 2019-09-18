@@ -19,13 +19,7 @@ namespace Skybrud.Social.Flickr.Responses.Urls {
         /// </summary>
         /// <param name="response">The instance of <see cref="IHttpResponse"/> the response should be based on.</param>
         private FlickrUrlsLookupUserResponse(IHttpResponse response) : base(response) {
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Parse the response body
             Body = ParseXmlElement(response.Body, FlickrUrlsLookupUserResponseBody.Parse);
-
         }
 
         #endregion

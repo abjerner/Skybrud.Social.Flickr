@@ -15,13 +15,7 @@ namespace Skybrud.Social.Flickr.Responses.Photos {
         #region Constructors
 
         private FlickrUploadPhotoResponse(IHttpResponse response) : base(response) {
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Parse the response body
             Body = ParseXmlElement(response.Body, FlickrUploadPhotoResponseBody.Parse);
-
         }
 
         #endregion
