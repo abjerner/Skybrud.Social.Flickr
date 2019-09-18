@@ -22,6 +22,11 @@ namespace Skybrud.Social.Flickr {
         /// </summary>
         public FlickrGalleriesEndpoint Galleries { get; }
 
+        ///// <summary>
+        ///// Gets a reference to the groups endpoint.
+        ///// </summary>
+        //public FlickrGroupsEndpoint Groups { get; }
+
         /// <summary>
         /// Gets a reference to the people endpoint.
         /// </summary>

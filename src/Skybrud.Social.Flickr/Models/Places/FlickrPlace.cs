@@ -1,5 +1,8 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Text;
+using System.Xml.Linq;
 using Skybrud.Essentials.Maps.Geometry;
+using Skybrud.Essentials.Strings;
 using Skybrud.Essentials.Xml.Extensions;
 
 namespace Skybrud.Social.Flickr.Models.Places {
@@ -126,27 +129,42 @@ namespace Skybrud.Social.Flickr.Models.Places {
         /// </summary>
         /// <param name="xml">The instance of <see cref="XElement"/> representing the object.</param>
         protected FlickrPlace(XElement xml) : base(xml) {
-            
-            // Attributes
-            Id = xml.GetAttributeValue("place_id");
-            WoeId = xml.GetAttributeValue("woeid");
-            Latitude = xml.GetAttributeValue<double>("latitude");
-            Longitude = xml.GetAttributeValue<double>("longitude");
-            PlaceUrl = xml.GetAttributeValue("place_url");
-            PlaceType = xml.GetAttributeValueAsEnum<FlickrPlaceType>("place_type");
-            PlaceTypeId = xml.GetAttributeValue<int>("place_type_id");
-            Timezone = xml.GetAttributeValue("timezone");
-            Name = xml.GetAttributeValue("name");
-            WoeName = xml.GetAttributeValue("woe_name");
-            HasShapeData = xml.GetAttributeValueAsBoolean("has_shapedata");
 
-            // Elements
-            Neighbourhood = xml.GetElement("neighbourhood", FlickrPlaceItem.Parse);
-            Locality = xml.GetElement("locality", FlickrPlaceItem.Parse);
-            County = xml.GetElement("county", FlickrPlaceItem.Parse);
-            Region = xml.GetElement("region", FlickrPlaceItem.Parse);
-            Country = xml.GetElement("country", FlickrPlaceItem.Parse);
-        
+            StringBuilder sb = new StringBuilder();
+
+            try
+            {
+
+                // Attributes
+                Id = xml.GetAttributeValue("place_id");
+                WoeId = xml.GetAttributeValue("woeid");
+                Latitude = xml.GetAttributeValue("latitude", StringUtils.ParseDouble);
+                Longitude = xml.GetAttributeValue("longitude", StringUtils.ParseDouble);
+                PlaceUrl = xml.GetAttributeValue("place_url");
+                PlaceType = xml.GetAttributeValueAsEnum("place_type", FlickrPlaceType.Unknown);
+                PlaceTypeId = xml.GetAttributeValue("place_type_id", StringUtils.ParseInt32);
+                Timezone = xml.GetAttributeValue("timezone");
+                Name = xml.GetAttributeValue("name");
+                WoeName = xml.GetAttributeValue("woe_name");
+                HasShapeData = xml.GetAttributeValueAsBoolean("has_shapedata");
+
+                // Elements
+                Neighbourhood = xml.GetElement("neighbourhood", FlickrPlaceItem.Parse);
+                Locality = xml.GetElement("locality", FlickrPlaceItem.Parse);
+                County = xml.GetElement("county", FlickrPlaceItem.Parse);
+                Region = xml.GetElement("region", FlickrPlaceItem.Parse);
+                Country = xml.GetElement("country", FlickrPlaceItem.Parse);
+
+            }
+            catch (Exception ex)
+            {
+
+                sb.AppendLine();
+                sb.AppendLine(xml + "");
+
+                throw new Exception(sb + "", ex);
+
+            }        
         }
 
         #endregion

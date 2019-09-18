@@ -1,5 +1,6 @@
 ﻿using System;
 using Skybrud.Essentials.Http;
+using Skybrud.Social.Flickr.Endpoints.Raw.Groups;
 using Skybrud.Social.Flickr.OAuth;
 using Skybrud.Social.Flickr.Options.Groups;
 
@@ -15,7 +16,9 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Flickr OAuth client.
         /// </summary>
-        public FlickrOAuthClient Client { get; private set; }
+        public FlickrOAuthClient Client { get; }
+
+        public FlickrGroupsPoolsRawEndpoint Pools { get; }
 
         #endregion
 
@@ -27,6 +30,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <param name="client">An instance of <see cref="FlickrOAuthClient"/> representing the parent OAuth client.</param>
         internal FlickrGroupsRawEndpoint(FlickrOAuthClient client) {
             Client = client;
+            Pools = new FlickrGroupsPoolsRawEndpoint(client);
         }
 
         #endregion

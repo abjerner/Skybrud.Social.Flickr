@@ -29,6 +29,11 @@ namespace Skybrud.Social.Flickr.OAuth {
         public FlickrGalleriesRawEndpoint Galleries { get; }
 
         /// <summary>
+        /// Gets a reference to the raw groups endpoint.
+        /// </summary>
+        public FlickrGroupsRawEndpoint Groups { get; }
+
+        /// <summary>
         /// Gets a reference to the raw people endpoint.
         /// </summary>
         public FlickrPeopleRawEndpoint People { get; }
@@ -108,6 +113,7 @@ namespace Skybrud.Social.Flickr.OAuth {
 
             // Initialize the raw endpoints
             Galleries = new FlickrGalleriesRawEndpoint(this);
+            Groups = new FlickrGroupsRawEndpoint(this);
             People = new FlickrPeopleRawEndpoint(this);
             Photosets = new FlickrPhotosetsRawEndpoint(this);
             Photos = new FlickrPhotosRawEndpoint(this);
