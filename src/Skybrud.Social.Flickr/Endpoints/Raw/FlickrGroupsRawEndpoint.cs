@@ -60,7 +60,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse GetInfo(FlickrGetGroupInfoOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+            return Client.Get("https://api.flickr.com/services/rest", options);
         }
 
         #endregion

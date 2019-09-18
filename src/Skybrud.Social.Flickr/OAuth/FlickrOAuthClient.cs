@@ -160,7 +160,7 @@ namespace Skybrud.Social.Flickr.OAuth {
             };
 
             // Make the call to the API
-            IHttpResponse response = HttpUtils.Http.DoHttpGetRequest(RequestTokenUrl, queryString);
+            IHttpResponse response = HttpUtils.Requests.Get(RequestTokenUrl, queryString);
 
             // Validate the response
             FlickrResponse.ValidateResponse(response);
@@ -209,7 +209,7 @@ namespace Skybrud.Social.Flickr.OAuth {
             queryString.Add("oauth_signature", signature);
 
             // Make the call to the API
-            IHttpResponse response = HttpUtils.Http.DoHttpGetRequest(AccessTokenUrl, queryString);
+            IHttpResponse response = HttpUtils.Requests.Get(AccessTokenUrl, queryString);
 
             // Validate the response
             FlickrResponse.ValidateResponse(response);

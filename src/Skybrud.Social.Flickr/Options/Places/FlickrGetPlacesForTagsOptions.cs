@@ -99,7 +99,7 @@ namespace Skybrud.Social.Flickr.Options.Places {
             if (!string.IsNullOrEmpty(PlaceId)) query.Add("place_id", WoeId);
             if (Threshold > 0) query.Add("threshold", Threshold);
             if (Tags != null && Tags.Length > 0) query.Add("tags", string.Join(",", Tags));
-            if (Tags != null && Tags.Length > 0) query.Add("tag_mode", StringHelper.ToPascalCase(TagMode));
+            if (Tags != null && Tags.Length > 0) query.Add("tag_mode", StringUtils.ToPascalCase(TagMode));
             if (MinUploadDate != null) query.Add("min_upload_date", MinUploadDate.UnixTimestamp);
             if (MaxUploadDate != null) query.Add("max_upload_date", MaxUploadDate.UnixTimestamp);
             if (MinTakenDate != null) query.Add("min_taken_date", MinTakenDate.UnixTimestamp);

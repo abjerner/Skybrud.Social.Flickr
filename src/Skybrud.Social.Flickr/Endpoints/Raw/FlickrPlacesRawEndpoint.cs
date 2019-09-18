@@ -46,7 +46,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse Find(string query) {
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentNullException(nameof(query));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
+            return Client.Get("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.places.find"},
                 {"query", query}
             });
@@ -101,7 +101,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         ///     <cref>https://www.flickr.com/services/api/flickr.places.findByLatLon.htm</cref>
         /// </see>
         public IHttpResponse FindByLatLon(double latitude, double longitude, int accurary) {
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
+            return Client.Get("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.places.findByLatLon"},
                 {"lat", latitude.ToString(CultureInfo.InvariantCulture)},
                 {"lon", longitude.ToString(CultureInfo.InvariantCulture)}
@@ -120,7 +120,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse GetInfo(string placeId) {
             if (string.IsNullOrWhiteSpace(placeId)) throw new ArgumentNullException(nameof(placeId));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
+            return Client.Get("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.places.getInfo"},
                 {"place_id", placeId}
             });
@@ -169,7 +169,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         public IHttpResponse PlacesForContacts(FlickrGetPlacesForContactsOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+            return Client.Get("https://api.flickr.com/services/rest", options);
         }
         
         public IHttpResponse GetPlacesForTags(FlickrPlaceType placeType, string[] tags) {
@@ -181,7 +181,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
 
         public IHttpResponse GetPlacesForTags(FlickrGetPlacesForTagsOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+            return Client.Get("https://api.flickr.com/services/rest", options);
         }
         
         // TODO: https://www.flickr.com/services/api/flickr.places.placesForUser.html

@@ -54,7 +54,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse Create(FlickrCreateGalleryOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+            return Client.Get("https://api.flickr.com/services/rest", options);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse GetInfo(FlickrGetGalleryInfoOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+            return Client.Get("https://api.flickr.com/services/rest", options);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse GetList(FlickrGetGalleryListOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", options);
+            return Client.Get("https://api.flickr.com/services/rest", options);
         }
 
         #endregion

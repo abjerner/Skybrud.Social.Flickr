@@ -39,7 +39,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse FindByUsername(string username) {
             if (string.IsNullOrWhiteSpace(username)) throw new ArgumentNullException(nameof(username));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
+            return Client.Get("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.people.findByUsername"},
                 {"username", username}
             });
@@ -55,7 +55,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse GetInfo(string userId) {
             if (string.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
+            return Client.Get("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.people.getInfo"},
                 {"user_id", userId}
             });

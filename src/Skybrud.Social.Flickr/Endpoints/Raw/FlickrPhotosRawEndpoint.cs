@@ -41,7 +41,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse GetInfo(string photoId) {
             if (string.IsNullOrWhiteSpace(photoId)) throw new ArgumentNullException(nameof(photoId));
-            return Client.DoHttpGetRequest("https://api.flickr.com/services/rest", new HttpQueryString {
+            return Client.Get("https://api.flickr.com/services/rest", new HttpQueryString {
                 {"method", "flickr.photos.getInfo"},
                 {"photo_id", photoId},
                 {"username", photoId}
@@ -58,7 +58,7 @@ namespace Skybrud.Social.Flickr.Endpoints.Raw {
         /// </see>
         public IHttpResponse Upload(FlickrUploadPhotoOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
-            return Client.DoHttpPostRequest("https://up.flickr.com/services/upload/", options);
+            return Client.Post("https://up.flickr.com/services/upload/", options);
         }
 
         #endregion
