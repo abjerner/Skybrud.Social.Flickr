@@ -23,6 +23,8 @@ namespace Skybrud.Social.Flickr.OAuth {
 
         #region Properties
 
+        public string ApiKey { get; set; }
+
         /// <summary>
         /// Gets a reference to the raw galleries endpoint.
         /// </summary>
@@ -225,6 +227,8 @@ namespace Skybrud.Social.Flickr.OAuth {
         /// </summary>
         /// <param name="request"></param>
         protected override void PrepareHttpRequest(IHttpRequest request) {
+
+            if (string.IsNullOrWhiteSpace(ApiKey) == false) request.QueryString.Add("api_key", ApiKey);
 
             // Skip OAuth 1.0a signed requests if no OAuth information is specified (this is a Flickr feature, not OAuth)
             if (string.IsNullOrWhiteSpace(ConsumerKey + ConsumerSecret + Token + TokenSecret)) return;
