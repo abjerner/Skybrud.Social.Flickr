@@ -142,6 +142,17 @@ namespace Skybrud.Social.Flickr {
             return new FlickrService(client);
         }
 
+        /// <summary>
+        /// Initializes a new service instance based on the specified <paramref name="apiKey"/>.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <returns>An instance of <see cref="FlickrService"/>.</returns>
+        public static FlickrService CreateFromApiKey(string apiKey) {
+            if (string.IsNullOrWhiteSpace(apiKey)) throw new ArgumentNullException(nameof(apiKey));
+            return new FlickrService(new FlickrOAuthClient { ApiKey = apiKey });
+        }
+    
+
         #endregion
 
     }
